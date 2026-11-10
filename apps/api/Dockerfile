@@ -16,4 +16,4 @@ RUN npm ci --omit=dev --ignore-scripts && npm cache clean --force
 COPY --from=build /app/dist ./dist
 USER node
 EXPOSE 3000
-CMD ["node", "dist/main.js"]
+CMD ["node", "--import", "./dist/telemetry.js", "dist/main.js"]
