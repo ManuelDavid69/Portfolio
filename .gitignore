@@ -18,3 +18,5 @@ obj/
 *.tsbuildinfo
 local.settings.json
 TestResults/
+terraform.tfvars
+.terraform.lock.hcl.bak

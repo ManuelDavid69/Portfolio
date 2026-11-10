@@ -1,0 +1,12 @@
+# Copy to terraform.tfvars and fill in. terraform.tfvars is ignored by Git.
+subscription_id = "00000000-0000-0000-0000-000000000000"
+suffix          = "md01"
+
+smtp = {
+  host     = "ssl0.ovh.net"
+  port     = 465
+  user     = "contact@davidmanuel.fr"
+  password = "change-me"
+  from     = "contact@davidmanuel.fr"
+  to       = "your-own-address@example.com"
+}
