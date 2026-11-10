@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "StorageConnection": "UseDevelopmentStorage=true",
+    "Database": "Host=localhost;Port=5432;Database=portfolio;Username=portfolio;Password=portfolio",
+    "Smtp__Host": "localhost",
+    "Smtp__Port": "1025",
+    "Smtp__User": "",
+    "Smtp__Password": "",
+    "Smtp__From": "portfolio@davidmanuel.fr",
+    "Smtp__To": "you@example.com",
+    "GitHub__Repos": "ManuelDavid69/QRShield,ManuelDavid69/PumpCast,stonoly/CPE-iot_project-3IRC",
+    "GitHub__Token": ""
+  }
+}
