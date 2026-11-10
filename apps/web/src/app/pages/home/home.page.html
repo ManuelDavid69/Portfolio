@@ -41,8 +41,25 @@
       <p>{{ i18n.t('projectsIntro') }}</p>
     </div>
 
+    <nav class="group-nav" [attr.aria-label]="i18n.t('projectsTitle')">
+      @for (group of groups; track group.id) {
+        <a [routerLink]="[]" [fragment]="'projects-' + group.id">
+          <app-icon [name]="group.icon" />{{ i18n.t(group.label) }}
+          <span class="count">{{ group.projects.length }}</span>
+        </a>
+      }
+    </nav>
+
     @for (group of groups; track group.id) {
-      <h3 class="group-title">{{ i18n.t(group.label) }}</h3>
+      <div class="group" [id]="'projects-' + group.id">
+      <div class="group-head">
+        <span class="group-icon"><app-icon [name]="group.icon" /></span>
+        <div>
+          <h3>{{ i18n.t(group.label) }}</h3>
+          <p>{{ i18n.t(group.desc) }}</p>
+        </div>
+        <span class="group-count">{{ group.projects.length }} {{ i18n.t('projectsCount') }}</span>
+      </div>
       <div class="cards">
         @for (p of group.projects; track p.slug) {
           <article class="card">
@@ -50,7 +67,11 @@
               @if (p.thumbnail) {
                 <img [src]="p.thumbnail.src" alt="" width="640" height="360" loading="lazy" decoding="async" />
               } @else {
-                <span class="media-placeholder">{{ p.title }}</span>
+                <span class="media-placeholder">
+                  <app-icon [name]="group.icon" />
+                  <strong>{{ p.title }}</strong>
+                  <small>{{ p.stack.slice(0, 3).join(' / ') }}</small>
+                </span>
               }
             </a>
             <div class="card-body">
@@ -71,6 +92,7 @@
             </div>
           </article>
         }
+      </div>
       </div>
     }
   </div>

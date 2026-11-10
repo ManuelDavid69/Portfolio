@@ -6,13 +6,13 @@ import { ABOUT, INTERNSHIP, INTRO, JOURNEY, PROFILE, ROLE, SKILLS, SPOKEN } from
 import { PROJECTS } from '../../content/projects';
 import { ProjectGroup } from '../../content/types';
 import { UiKey } from '../../content/ui';
-import { Icon } from '../../layout/icon';
+import { Icon, IconName } from '../../layout/icon';
 import { ContactForm } from './contact-form';
 
-const GROUPS: { id: ProjectGroup; label: UiKey }[] = [
-  { id: 'work', label: 'groupWork' },
-  { id: 'personal', label: 'groupPersonal' },
-  { id: 'school', label: 'groupSchool' },
+const GROUPS: { id: ProjectGroup; label: UiKey; desc: UiKey; icon: IconName }[] = [
+  { id: 'work', label: 'groupWork', desc: 'groupWorkDesc', icon: 'briefcase' },
+  { id: 'personal', label: 'groupPersonal', desc: 'groupPersonalDesc', icon: 'code' },
+  { id: 'school', label: 'groupSchool', desc: 'groupSchoolDesc', icon: 'school' },
 ];
 
 @Component({

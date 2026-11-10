@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-export type IconName = 'github' | 'linkedin' | 'mail' | 'download' | 'arrow-left' | 'arrow-right' | 'external' | 'sun' | 'moon' | 'menu' | 'close';
+export type IconName = 'github' | 'linkedin' | 'mail' | 'download' | 'arrow-left' | 'arrow-right' | 'external' | 'sun' | 'moon' | 'menu' | 'close' | 'briefcase' | 'code' | 'school';
 
 /** A few inline SVG icons, to avoid loading an icon font for so little. */
 @Component({
@@ -38,6 +38,15 @@ export type IconName = 'github' | 'linkedin' | 'mail' | 'download' | 'arrow-left
         }
         @case ('menu') {
           <path d="M4 6h16M4 12h16M4 18h16" />
+        }
+        @case ('briefcase') {
+          <rect x="3" y="7" width="18" height="13" rx="2" /><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /><path d="M3 13h18" />
+        }
+        @case ('code') {
+          <path d="m8 7-5 5 5 5" /><path d="m16 7 5 5-5 5" /><path d="m14 4-4 16" />
+        }
+        @case ('school') {
+          <path d="M2 9l10-5 10 5-10 5Z" /><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" /><path d="M22 9v6" />
         }
         @case ('close') {
           <path d="M6 6l12 12M18 6 6 18" />

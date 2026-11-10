@@ -107,12 +107,94 @@ h1 {
 }
 
 // ---------- Projects
-.group-title {
-  font-size: 1.25rem;
-  margin: 3rem 0 1.25rem;
+.group-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: -0.5rem 0 3rem;
 
-  &:first-of-type {
-    margin-top: 0;
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--heading);
+    font-weight: 600;
+    font-size: 0.925rem;
+  }
+
+  a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .count {
+    min-width: 1.5rem;
+    padding: 0 0.4rem;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
+
+.group {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+
+  & + .group {
+    margin-top: 4rem;
+  }
+}
+
+.group-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--border);
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    margin: 0.2rem 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+}
+
+.group-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+  border-radius: var(--radius-sm);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 1.4rem;
+}
+
+.group-count {
+  margin-left: auto;
+  flex: none;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+
+  @media (max-width: 36rem) {
+    display: none;
   }
 }
 
@@ -153,15 +235,29 @@ h1 {
 
 .media-placeholder {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.4rem;
   height: 100%;
   padding: 1rem;
   text-align: center;
-  background: var(--accent-soft);
+  background: linear-gradient(135deg, var(--accent-soft), var(--bg-alt));
   color: var(--accent);
-  font-size: 1.4rem;
-  font-weight: 700;
+
+  app-icon {
+    font-size: 2rem;
+  }
+
+  strong {
+    font-size: 1.5rem;
+    color: var(--heading);
+  }
+
+  small {
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
 }
 
 .card-body {

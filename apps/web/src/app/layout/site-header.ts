@@ -52,6 +52,7 @@ import { LangSwitch } from './lang-switch';
       height: var(--header-h);
     }
     .brand {
+      white-space: nowrap;
       font-weight: 700;
       font-size: 1.1rem;
       color: var(--heading);
@@ -61,7 +62,22 @@ import { LangSwitch } from './lang-switch';
       display: flex;
       gap: 1.75rem;
     }
+    @media (max-width: 64rem) {
+      .bar {
+        gap: 1rem;
+      }
+      nav {
+        gap: 0.9rem;
+      }
+      nav a {
+        font-size: 0.875rem;
+      }
+      .tools {
+        gap: 0.35rem;
+      }
+    }
     nav a {
+      white-space: nowrap;
       color: var(--text);
       font-size: 0.95rem;
       font-weight: 500;
@@ -94,7 +110,7 @@ import { LangSwitch } from './lang-switch';
     .menu-btn {
       display: none;
     }
-    @media (max-width: 52rem) {
+    @media (max-width: 42rem) {
       .menu-btn {
         display: inline-flex;
       }
