@@ -2,21 +2,50 @@ import { L } from './types';
 
 export const PROFILE = {
   name: 'Manuel David',
+  firstName: 'Manuel',
   email: 'manu.david0704@gmail.com',
   linkedin: 'https://www.linkedin.com/in/manuel-david-9585a526a/',
   github: 'https://github.com/ManuelDavid69',
-  /** Set to the PDF path once the new CV is ready, e.g. '/cv/manuel-david-cv-en.pdf'. */
+  /** Path of the PDF once the new CV is ready, e.g. '/cv/manuel-david-cv-en.pdf'. */
   cv: { en: '', fr: '' } as L,
-  /** Set to the photo path once Manuel sends it. */
+  /** Path of the photo once Manuel sends it. */
   photo: '',
 };
 
-export const INTRO: L = {
-  en: 'I study software engineering at CPE Lyon and work at APRR, a French motorway operator, as a work-study developer. There I write the batch jobs and web features that keep business data correct.',
-  fr: 'J’étudie l’ingénierie logicielle à CPE Lyon et je suis développeur en alternance chez APRR, société d’autoroutes. J’y écris les traitements et les fonctionnalités web qui gardent les données métier justes.',
+export const ROLE: L = {
+  en: 'Computer engineering apprentice at CPE Lyon',
+  fr: 'Apprenti ingénieur en informatique à CPE Lyon',
 };
 
+export const INTERNSHIP: L = {
+  en: 'Internship abroad from 14 June 2027 for 9 to 12 weeks',
+  fr: 'Stage à l’étranger à partir du 14 juin 2027 pour 9 à 12 semaines',
+};
+
+export const INTRO: L = {
+  en: 'I am in my 4th year at CPE Lyon in computer science and networks. I do it as a work-study at AREA, part of the APRR motorway group. In the software department I work on the company’s business applications. I migrate old code, write Java batch jobs and SQL scripts for GDPR.',
+  fr: 'Je suis en 4e année à CPE Lyon en informatique et réseaux. Je la fais en alternance chez AREA, une société du groupe autoroutier APRR. Au département logiciel je travaille sur les applications métier de l’entreprise. Je migre du code ancien, j’écris des traitements Java et des scripts SQL pour le RGPD.',
+};
+
+export const ABOUT: L[] = [
+  {
+    en: 'I did not start in computer science. After a baccalaureate in maths and engineering science I studied electrical engineering and industrial computing at IUT Lyon 1. I did my internship and then my work-study at Bouygues Energies & Services on the T6 tramway extension in Lyon. I sized cables and updated electrical drawings. The courses I liked most were always the ones with code, so I chose an engineering school in computer science and networks.',
+    fr: 'Je n’ai pas commencé par l’informatique. Après un bac général maths et sciences de l’ingénieur j’ai fait un BUT GEII à l’IUT Lyon 1. J’ai fait mon stage puis mon alternance chez Bouygues Energies & Services sur le prolongement du tramway T6 à Lyon. Je dimensionnais des câbles et je mettais à jour des schémas électriques. Les cours que je préférais étaient toujours ceux avec du code, alors j’ai choisi une école d’ingénieurs en informatique et réseaux.',
+  },
+  {
+    en: 'Since 2025 I have been an apprentice at AREA in the department that maintains the group’s software. I work in the business software team on apps for housing, fleet maintenance and staff representatives. In my free time I build personal projects to learn tools I do not use at work yet.',
+    fr: 'Depuis 2025 je suis apprenti chez AREA dans le département qui maintient les logiciels du groupe. Je travaille dans le pôle logiciels de gestion sur des applications pour les logements, la maintenance du parc et les représentants du personnel. Sur mon temps libre je fais des projets personnels pour apprendre des outils que je n’utilise pas encore au travail.',
+  },
+  {
+    en: 'For my internship abroad I want to work in English in a bigger team than mine and see how other companies build software.',
+    fr: 'Pour mon stage à l’étranger je veux travailler en anglais dans une équipe plus grande que la mienne et voir comment d’autres entreprises développent leurs logiciels.',
+  },
+];
+
+export type StepKind = 'education' | 'work';
+
 export interface Step {
+  kind: StepKind;
   when: L;
   what: L;
   where: L;
@@ -27,54 +56,61 @@ export interface Step {
 /** Newest first. */
 export const JOURNEY: Step[] = [
   {
-    when: { en: 'From June 2027', fr: 'À partir de juin 2027' },
+    kind: 'work',
+    when: { en: 'June 2027', fr: 'Juin 2027' },
     what: { en: 'Internship abroad', fr: 'Stage à l’étranger' },
-    where: { en: 'This is what I am looking for', fr: 'C’est ce que je recherche' },
+    where: { en: '9 to 12 weeks', fr: '9 à 12 semaines' },
+    detail: { en: 'This is what I am looking for.', fr: 'C’est ce que je recherche.' },
     upcoming: true,
   },
   {
-    when: { en: '2025 – today', fr: '2025 – aujourd’hui' },
-    what: { en: 'Engineering degree, computer science and networks (IRC)', fr: 'Diplôme d’ingénieur, informatique et réseaux de communication (IRC)' },
-    where: { en: 'CPE Lyon', fr: 'CPE Lyon' },
-    detail: {
-      en: 'Fourth year. Software engineering, networks, security and embedded systems.',
-      fr: 'Quatrième année. Génie logiciel, réseaux, sécurité et systèmes embarqués.',
-    },
-  },
-  {
-    when: { en: '2025 – today', fr: '2025 – aujourd’hui' },
-    what: { en: 'Work-study developer', fr: 'Développeur en alternance' },
+    kind: 'work',
+    when: { en: '2025 – 2028', fr: '2025 – 2028' },
+    what: { en: 'Engineering apprentice', fr: 'Apprenti ingénieur' },
     where: { en: 'AREA, APRR group (Lyon)', fr: 'AREA, groupe APRR (Lyon)' },
     detail: {
-      en: 'GMAO PARC and CASA during the year, Digidel during summer 2026.',
-      fr: 'GMAO PARC et CASA pendant l’année, Digidel pendant l’été 2026.',
+      en: 'Software department, business software team. Projects CASA, GMAO PARC and Digidel.',
+      fr: 'Département études et édition logicielle, pôle logiciels de gestion. Projets CASA, GMAO PARC et Digidel.',
     },
   },
   {
+    kind: 'education',
+    when: { en: '2025 – 2028', fr: '2025 – 2028' },
+    what: { en: 'Engineering degree in computer science and networks', fr: 'Diplôme d’ingénieur en informatique et réseaux de communication' },
+    where: { en: 'CPE Lyon', fr: 'CPE Lyon' },
+    detail: {
+      en: 'Master’s level degree (300 ECTS) as a work-study.',
+      fr: 'Diplôme de niveau master (300 ECTS) en alternance.',
+    },
+  },
+  {
+    kind: 'work',
     when: { en: '2024 – 2025', fr: '2024 – 2025' },
-    what: { en: 'Work-study, design office technician', fr: 'Alternance, technicien bureau d’études' },
+    what: { en: 'Design office technician', fr: 'Technicien bureau d’études' },
     where: { en: 'Bouygues Energies & Services (Lyon)', fr: 'Bouygues Energies & Services (Lyon)' },
     detail: {
-      en: 'Electrical drawings for the T6 tramway extension in Lyon.',
-      fr: 'Schémas électriques pour le prolongement du tramway T6 à Lyon.',
+      en: 'Internship then work-study on the T6 tramway extension.',
+      fr: 'Stage puis alternance sur le prolongement du tramway T6.',
     },
   },
   {
-    when: { en: 'April – July 2024', fr: 'Avril – juillet 2024' },
-    what: { en: 'Internship, design office', fr: 'Stage, bureau d’études' },
-    where: { en: 'Bouygues Energies & Services (Lyon)', fr: 'Bouygues Energies & Services (Lyon)' },
-    detail: {
-      en: 'Power calculations and cable and breaker sizing for the same tramway line.',
-      fr: 'Bilans de puissance et dimensionnement des câbles et disjoncteurs pour la même ligne de tramway.',
-    },
-  },
-  {
+    kind: 'education',
     when: { en: '2022 – 2025', fr: '2022 – 2025' },
-    what: { en: 'Bachelor of technology, electrical engineering and industrial computing (BUT GEII)', fr: 'BUT Génie électrique et informatique industrielle (GEII)' },
-    where: { en: 'IUT Lyon 1', fr: 'IUT Lyon 1' },
+    what: { en: 'Bachelor in electrical engineering and industrial computing', fr: 'BUT Génie électrique et informatique industrielle' },
+    where: { en: 'IUT Lyon 1, Villeurbanne', fr: 'IUT Lyon 1, Villeurbanne' },
     detail: {
-      en: 'Where I started programming: C, Python, PHP, Java and databases, next to automation and electronics.',
-      fr: 'Là où j’ai commencé à programmer : C, Python, PHP, Java et bases de données, à côté de l’automatisme et de l’électronique.',
+      en: 'Three-year degree (180 ECTS). Automation and industrial computing track.',
+      fr: 'Diplôme en trois ans (180 ECTS). Parcours automatisme et informatique industrielle.',
+    },
+  },
+  {
+    kind: 'education',
+    when: { en: '2022', fr: '2022' },
+    what: { en: 'French baccalaureate', fr: 'Baccalauréat général' },
+    where: { en: 'Lycée Charlie Chaplin, Décines', fr: 'Lycée Charlie Chaplin, Décines' },
+    detail: {
+      en: 'Maths and engineering science.',
+      fr: 'Mathématiques et sciences de l’ingénieur.',
     },
   },
 ];
@@ -85,30 +121,16 @@ export interface SkillGroup {
 }
 
 export const SKILLS: SkillGroup[] = [
-  { name: { en: 'Languages', fr: 'Langages' }, items: ['Java', 'Python', 'TypeScript', 'JavaScript', 'Go', 'PHP', 'SQL', 'C / C++', 'C#'] },
-  { name: { en: 'Back end', fr: 'Back end' }, items: ['Spring Boot', 'JPA / Hibernate', 'FastAPI', 'Flask', 'NestJS', 'REST', 'GraphQL', 'OAuth2'] },
-  { name: { en: 'Front end and mobile', fr: 'Front end et mobile' }, items: ['Angular', 'Vue.js', 'React', 'Next.js', 'React Native (Expo)', 'Android'] },
-  { name: { en: 'Data', fr: 'Données' }, items: ['PostgreSQL', 'MySQL', 'SQLite', 'MongoDB', 'Redis', 'Query tuning (EXPLAIN)', 'scikit-learn'] },
-  { name: { en: 'Delivery', fr: 'Livraison' }, items: ['Git', 'Docker', 'GitHub Actions', 'Azure DevOps', 'Azure', 'Maven', 'Linux', 'Playwright', 'Jest / Vitest'] },
-  { name: { en: 'Networks and security', fr: 'Réseaux et sécurité' }, items: ['TCP/IP', 'VLAN', 'Cisco', 'SSH', 'GDPR by design', 'URL threat analysis'] },
+  { name: { en: 'Languages', fr: 'Langages' }, items: ['Java', 'Python', 'TypeScript', 'JavaScript', 'PHP', 'Go', 'C', 'C++', 'C#', 'SQL'] },
+  { name: { en: 'Back end', fr: 'Back-end' }, items: ['Spring Boot', 'FastAPI', 'Flask', 'NestJS', 'REST API', 'GraphQL', 'OAuth2', 'JWT'] },
+  { name: { en: 'Front end and mobile', fr: 'Front-end et mobile' }, items: ['Angular', 'Vue.js', 'React', 'Next.js', 'React Native', 'Android', 'HTML / CSS'] },
+  { name: { en: 'Databases', fr: 'Bases de données' }, items: ['PostgreSQL', 'MySQL', 'SQLite', 'MongoDB', 'Redis'] },
+  { name: { en: 'DevOps and cloud', fr: 'DevOps et cloud' }, items: ['Git', 'Docker', 'GitHub Actions', 'Azure DevOps', 'Azure', 'Terraform', 'Linux'] },
+  { name: { en: 'Networks and security', fr: 'Réseaux et sécurité' }, items: ['TCP/IP', 'VLAN', 'OSPF', 'BGP', 'Cisco', 'SSH', 'OWASP', 'Burp Suite', 'Nmap'] },
+  { name: { en: 'Methods and tools', fr: 'Méthodes et outils' }, items: ['Scrum', 'V-model', 'Postman', 'SonarQube', 'IntelliJ IDEA', 'VS Code', 'DBeaver'] },
 ];
 
 export const SPOKEN: L = {
-  en: 'French (native), English, Italian.',
-  fr: 'Français (langue maternelle), anglais, italien.',
+  en: 'French (native), English, Italian',
+  fr: 'Français (langue maternelle), anglais, italien',
 };
-
-export const ABOUT: L[] = [
-  {
-    en: 'I came to software through electrical engineering. During my first degree I wired PLCs and sized cables for a tramway line, and the parts I enjoyed most were always the ones with code in them. So I moved to an engineering school in computer science and networks.',
-    fr: 'Je suis arrivé au logiciel par le génie électrique. Pendant mon BUT, je câblais des automates et je dimensionnais des câbles pour une ligne de tramway, et les parties que je préférais étaient toujours celles où il y avait du code. Je suis donc parti en école d’ingénieurs, en informatique et réseaux.',
-  },
-  {
-    en: 'At work I like the unglamorous jobs that make data right: a batch that runs every night, a purge script that must not lock the database, a bug hidden in a sort. At home I build projects to learn the tools I do not use at work yet, like Go, GraphQL and machine learning for PumpCast.',
-    fr: 'Au travail, j’aime les tâches discrètes qui rendent les données justes : un traitement qui tourne chaque nuit, un script de purge qui ne doit pas bloquer la base, un bug caché dans un tri. Chez moi, je construis des projets pour apprendre les outils que je n’utilise pas encore au travail, comme Go, GraphQL et le machine learning pour PumpCast.',
-  },
-  {
-    en: 'Outside of code, I draw and I train at the gym.',
-    fr: 'En dehors du code, je dessine et je fais de la musculation.',
-  },
-];

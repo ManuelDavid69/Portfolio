@@ -22,8 +22,7 @@ export type DiagramId = 'gmao-flow' | 'explain-plan' | 'iot-chain';
 export type Figure =
   | { kind: 'picture'; picture: Picture }
   | { kind: 'pair'; pictures: [Picture, Picture]; caption: L }
-  | { kind: 'diagram'; id: DiagramId; caption: L }
-  | { kind: 'code'; language: string; code: string; caption: L };
+  | { kind: 'diagram'; id: DiagramId; caption: L };
 
 export interface Section {
   title: L;

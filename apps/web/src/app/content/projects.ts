@@ -8,22 +8,27 @@ const img = (src: string, width: number, height: number, alt: Picture['alt'], ca
   caption,
 });
 
-const pumpcastHome = img('/images/pumpcast/accueil.webp', 1280, 820, {
-  en: 'PumpCast home page: map and list of fuel stations around Lyon',
-  fr: 'Accueil de PumpCast : carte et liste des stations autour de Lyon',
-});
-
-const digidelBefore = img('/images/digidel/digidel-sync-avant.webp', 1600, 665, {
-  en: 'Before: the situation shows February 2026 while the planning still shows December 2021',
-  fr: 'Avant : la situation affiche février 2026 et le planning est resté sur décembre 2021',
-});
-
 const gmaoLog = img('/images/gmao-parc/gmao-log.webp', 1600, 501, {
   en: 'Log of a run of the equipment update job',
   fr: 'Journal d’une exécution du traitement de mise à jour des matériels',
 }, {
-  en: 'A real run of the equipment job. I removed the lines with server names, paths and e-mail addresses. What is left: the query, one update per machine, the commit, then the totals and return code 0.',
-  fr: 'Une vraie exécution du traitement des matériels. J’ai retiré les lignes contenant les noms de serveurs, les chemins et les adresses mail. Il reste la requête, une mise à jour par matériel, le commit, puis les totaux et le code retour 0.',
+  en: 'A real run of the equipment job. I removed the lines with server names and paths. You can see the query, one update per machine, the commit and the final count.',
+  fr: 'Une vraie exécution du traitement des matériels. J’ai retiré les lignes avec les noms de serveurs et les chemins. On voit la requête, une mise à jour par matériel, le commit et le bilan final.',
+});
+
+const digidelBefore = img('/images/digidel/digidel-sync-avant.webp', 1600, 665, {
+  en: 'Before: the situation shows February 2026 and the planning is still on December 2021',
+  fr: 'Avant : la situation affiche février 2026 et le planning est resté sur décembre 2021',
+});
+
+const pumpcastHome = img('/images/pumpcast/accueil.webp', 1280, 820, {
+  en: 'PumpCast home page with the map of stations around Lyon',
+  fr: 'Accueil de PumpCast avec la carte des stations autour de Lyon',
+});
+
+const qrshieldDemo = img('/images/qrshield/demo.webp', 1600, 1000, {
+  en: 'QRShield public page with the map of reported QR codes',
+  fr: 'Page publique de QRShield avec la carte des QR codes signalés',
 });
 
 export const PROJECTS: Project[] = [
@@ -32,29 +37,29 @@ export const PROJECTS: Project[] = [
     slug: 'gmao-parc',
     group: 'work',
     title: 'GMAO PARC',
-    year: '2025–2026',
+    year: '2025 – 2026',
     tagline: {
-      en: 'Java batch jobs that keep a fleet maintenance system in line with HR and finance data.',
-      fr: 'Des traitements Java qui gardent une GMAO de flotte cohérente avec les données RH et financières.',
+      en: 'Two Java batch jobs that update the fleet maintenance software on their own.',
+      fr: 'Deux traitements Java qui mettent à jour tout seuls le logiciel de maintenance du parc.',
     },
     context: { en: 'Work-study at AREA (APRR group)', fr: 'Alternance chez AREA (groupe APRR)' },
     period: { en: '2025 – 2026', fr: '2025 – 2026' },
-    role: { en: 'Developer (work-study)', fr: 'Développeur (alternant)' },
-    team: { en: 'Supervised by my tutor, with the fleet team as users', fr: 'Encadré par mon tuteur, avec l’équipe du parc comme utilisateurs' },
-    stack: ['Java', 'JDBC', 'PostgreSQL 17', 'REST API', 'Maven', 'Log4j 2', 'SMTP', 'Azure DevOps'],
+    role: { en: 'Apprentice in the business software team', fr: 'Apprenti dans le pôle logiciels de gestion' },
+    team: { en: 'With my company tutor', fr: 'Avec ma tutrice en entreprise' },
+    stack: ['Java', 'JDBC', 'PostgreSQL', 'REST API', 'Maven', 'Log4j', 'Azure DevOps'],
     links: [],
     thumbnail: gmaoLog,
     sections: [
       {
-        title: { en: 'The problem', fr: 'Le problème' },
+        title: { en: 'Context', fr: 'Contexte' },
         paragraphs: [
           {
-            en: 'The GMAO (a computerised maintenance management system built on the CARL Source software) tracks every vehicle and machine of the group: tractors, salt spreaders, mowers. It receives identities from HR and sends maintenance costs to the finance tools.',
-            fr: 'La GMAO PARC, construite sur le progiciel CARL Source, suit tous les véhicules et matériels du groupe : tracteurs, saleuses, tondeuses. Elle reçoit les identités depuis l’outil RH et envoie les coûts de maintenance aux outils financiers.',
+            en: 'The GMAO PARC is the software used to manage all the vehicles and machines of the group. It plans and tracks their maintenance: tractors, salt spreaders, mowers and so on. It runs on CARL Source and exchanges data with the HR tool and the finance tools.',
+            fr: 'La GMAO PARC est le logiciel qui gère tous les véhicules et matériels du groupe. Elle sert à planifier et suivre leur entretien : tracteurs, saleuses, tondeuses… Elle tourne sur CARL Source et échange des données avec l’outil RH et les outils financiers.',
           },
           {
-            en: 'Two updates were still done by hand. People who had left the company had to be deactivated one by one, which was a security and GDPR risk. And when a machine moved to another site, its cost centre often stayed on the old one, so maintenance was billed to the wrong department.',
-            fr: 'Deux mises à jour se faisaient encore à la main. Les personnes parties de l’entreprise devaient être désactivées une par une, avec un risque pour la sécurité et le RGPD. Et quand un matériel changeait de site, son code analytique restait souvent sur l’ancien, donc l’entretien était facturé au mauvais service.',
+            en: 'Two updates were still done by hand. People who had left the company had to be deactivated one by one. This was a security and GDPR issue. And when a machine moved to another site its cost centre code often stayed the same. Maintenance was then billed to the wrong department.',
+            fr: 'Deux mises à jour se faisaient encore à la main. Il fallait désactiver une par une les personnes parties de l’entreprise. C’était un problème de sécurité et de RGPD. Et quand un matériel changeait de site, son code analytique restait souvent le même. L’entretien était alors facturé au mauvais service.',
           },
         ],
         figures: [
@@ -62,61 +67,53 @@ export const PROJECTS: Project[] = [
             kind: 'diagram',
             id: 'gmao-flow',
             caption: {
-              en: 'Where the GMAO sits. Simplified: the real systems have internal names.',
-              fr: 'La place de la GMAO. Version simplifiée : les vrais systèmes ont des noms internes.',
+              en: 'Simplified view of the data flows around the GMAO.',
+              fr: 'Vue simplifiée des flux de données autour de la GMAO.',
             },
           },
         ],
       },
       {
-        title: { en: 'What I built', fr: 'Ce que j’ai fait' },
+        title: { en: 'What I did', fr: 'Ce que j’ai réalisé' },
         bullets: [
           {
-            en: 'Equipment job: one SQL query finds the machines whose cost centre differs from the one of the site they are attached to, then updates them in a single transaction and ends with a return code for the scheduler.',
-            fr: 'Traitement des matériels : une requête SQL trouve les matériels dont le code analytique diffère de celui du site de rattachement, puis les met à jour dans une seule transaction et se termine par un code retour pour l’ordonnanceur.',
+            en: 'An equipment job in Java and JDBC. It looks for machines whose cost centre is different from their site’s and fixes them in one transaction.',
+            fr: 'Un traitement des matériels en Java avec JDBC. Il cherche les matériels dont le code analytique ne correspond pas à celui de leur site et les corrige dans une seule transaction.',
           },
           {
-            en: 'People job: calls the CARL Source REST API, gets everyone whose contract has ended and switches their records to inactive (identity, user account, technician profile). It refreshes its access token when it expires.',
-            fr: 'Traitement des acteurs : appelle l’API REST de CARL Source, récupère les personnes dont le contrat est terminé et passe leurs fiches en inactif (acteur, compte utilisateur, intervenant). Le jeton d’accès est renouvelé quand il expire.',
+            en: 'A people job that uses the CARL Source REST API. It gets everyone whose contract has ended and switches them to inactive.',
+            fr: 'Un traitement des acteurs qui utilise l’API REST de CARL Source. Il récupère les personnes dont le contrat est terminé et les passe en inactif.',
           },
           {
-            en: 'A shared core for both jobs: database connection, e-mail report, error file and Log4j 2 logging. Settings live in external .properties files managed by operations, so no password is in the code.',
-            fr: 'Un socle commun aux deux traitements : connexion à la base, mail de compte rendu, fichier d’erreurs et journalisation Log4j 2. Les paramètres sont dans des fichiers .properties externes gérés par l’exploitation, donc aucun mot de passe dans le code.',
+            en: 'A common base shared by both jobs: database access, logs, error file and an e-mail report at the end of each run. Passwords and settings are in external files and not in the code.',
+            fr: 'Un socle commun aux deux traitements : accès à la base, logs, fichier d’erreurs et mail de compte rendu à la fin de chaque exécution. Les mots de passe et paramètres sont dans des fichiers externes et pas dans le code.',
           },
           {
-            en: 'Packaged as standalone fat JARs with Maven, versioned on Azure DevOps and run on the pre-production servers before going live.',
-            fr: 'Livré sous forme de Fat JAR autonomes avec Maven, versionné sur Azure DevOps et exécuté sur les serveurs de préproduction avant la mise en production.',
+            en: 'Delivery as fat JARs built with Maven. The code is on Azure DevOps and the jobs were tested on the pre-production servers.',
+            fr: 'Une livraison en Fat JAR avec Maven. Le code est sur Azure DevOps et les traitements ont été testés sur les serveurs de préproduction.',
           },
         ],
         figures: [{ kind: 'picture', picture: gmaoLog }],
       },
       {
-        title: { en: 'A bug worth telling', fr: 'Un bug qui mérite d’être raconté' },
+        title: { en: 'The bug that taught me the most', fr: 'Le bug qui m’a le plus appris' },
         paragraphs: [
           {
-            en: 'The people job read the API results page by page. In tests, some people were never deactivated. The reason: each person I deactivated left the filtered list, so everything shifted and the next page skipped records.',
-            fr: 'Le traitement des acteurs lisait les résultats de l’API page par page. En test, certaines personnes n’étaient jamais désactivées. La raison : chaque personne désactivée sortait de la liste filtrée, tout se décalait et la page suivante sautait des fiches.',
+            en: 'In testing some people were never deactivated. The job read the API results page by page. But every person I deactivated left the list. Everything shifted and the next page skipped people.',
+            fr: 'En test, certaines personnes n’étaient jamais désactivées. Le traitement lisait les résultats de l’API page par page. Mais chaque personne désactivée sortait de la liste. Tout se décalait et la page suivante sautait des personnes.',
           },
           {
-            en: 'The fix was to always read from the first page until the API returns nothing. The list empties as the work gets done, like a queue.',
-            fr: 'La correction a été de toujours relire la première page jusqu’à ce que l’API ne renvoie plus rien. La liste se vide au fur et à mesure du travail, comme une file d’attente.',
+            en: 'The fix was to always read the first page again until the API returns nothing. The list gets smaller as the job works.',
+            fr: 'La solution a été de toujours relire la première page jusqu’à ce que l’API ne renvoie plus rien. La liste se vide au fur et à mesure.',
           },
         ],
       },
       {
-        title: { en: 'Results', fr: 'Résultats' },
-        bullets: [
+        title: { en: 'Result', fr: 'Résultat' },
+        paragraphs: [
           {
-            en: 'Both updates now run on their own, and each run sends an e-mail report with the number of items read and updated.',
-            fr: 'Les deux mises à jour tournent seules, et chaque exécution envoie un mail avec le nombre d’éléments lus et mis à jour.',
-          },
-          {
-            en: 'After a reorganisation of the group in January 2026, I studied the existing HR integration flow end to end to prepare the arrival of new subsidiaries.',
-            fr: 'Après la réorganisation du groupe en janvier 2026, j’ai étudié de bout en bout le flux d’intégration RH existant pour préparer l’arrivée des nouvelles filiales.',
-          },
-          {
-            en: 'The code is ready for version 7 of CARL Source, planned for the end of 2026.',
-            fr: 'Le code est prêt pour la version 7 de CARL Source, prévue fin 2026.',
+            en: 'The two updates no longer need anyone. I also studied the whole HR integration flow to prepare the arrival of new subsidiaries after the group reorganisation in January 2026. The code is ready for CARL Source version 7.',
+            fr: 'Les deux mises à jour n’ont plus besoin de personne. J’ai aussi étudié tout le flux d’intégration RH pour préparer l’arrivée des nouvelles filiales après la réorganisation de janvier 2026. Le code est prêt pour la version 7 de CARL Source.',
           },
         ],
       },
@@ -126,58 +123,58 @@ export const PROJECTS: Project[] = [
     slug: 'casa',
     group: 'work',
     title: 'CASA',
-    year: '2025–2026',
+    year: '2025 – 2026',
     tagline: {
-      en: 'Modernising a housing management app: Java layer removed, Excel exports rewritten, GDPR purge scripts.',
-      fr: 'Modernisation d’une application de gestion de logements : couche Java supprimée, exports Excel réécrits, scripts de purge RGPD.',
+      en: 'Migration of a housing management app to PHP and GDPR scripts to clean personal data.',
+      fr: 'Migration d’une application de gestion des logements vers PHP et scripts RGPD pour purger les données personnelles.',
     },
     context: { en: 'Work-study at AREA (APRR group)', fr: 'Alternance chez AREA (groupe APRR)' },
     period: { en: '2025 – 2026', fr: '2025 – 2026' },
-    role: { en: 'Developer (work-study)', fr: 'Développeur (alternant)' },
-    team: { en: 'Supervised by my tutor, with the housing and finance teams', fr: 'Encadré par mon tuteur, avec les équipes logement et finance' },
-    stack: ['PHP 8.1', 'PostgreSQL', 'SQL', 'JavaScript', 'AJAX', 'Linux'],
+    role: { en: 'Apprentice in the business software team', fr: 'Apprenti dans le pôle logiciels de gestion' },
+    team: { en: 'With a developer of the team', fr: 'Avec un développeur de l’équipe' },
+    stack: ['PHP', 'PostgreSQL', 'SQL', 'JavaScript', 'AJAX'],
     links: [],
     sections: [
       {
-        title: { en: 'The problem', fr: 'Le problème' },
+        title: { en: 'Context', fr: 'Contexte' },
         paragraphs: [
           {
-            en: 'CASA manages the housing that the group provides to its staff. It mixed old PHP modules with newer Java and Angular parts, so a single feature could cross three technologies. It also stores sensitive personal data, such as bank details and household information, which must be deleted after a set time.',
-            fr: 'CASA gère les logements que le groupe met à disposition de ses agents. L’application mélangeait d’anciens modules PHP et des parties plus récentes en Java et Angular, donc une seule fonctionnalité pouvait traverser trois technologies. Elle contient aussi des données personnelles sensibles, comme des coordonnées bancaires et la composition du foyer, qui doivent être supprimées après un certain délai.',
+            en: 'CASA is the app the group uses to manage its housing for employees. Some parts were in old PHP and others in Java with Angular. One feature could use three technologies so maintenance was hard. The app also stores sensitive data like bank details and family situations.',
+            fr: 'CASA est l’application qui gère le parc de logements du groupe. Une partie était en PHP ancien et une autre en Java avec Angular. Une même fonctionnalité pouvait passer par trois technologies et la maintenance était compliquée. L’application contient aussi des données sensibles comme des coordonnées bancaires ou des situations familiales.',
           },
         ],
       },
       {
-        title: { en: 'What I did', fr: 'Ce que j’ai fait' },
+        title: { en: 'What I did', fr: 'Ce que j’ai réalisé' },
         bullets: [
           {
-            en: 'Moved the consultation pages and Excel exports from the Java service to PHP 8.1. The page no longer goes through Angular, then a Java API, then the database.',
-            fr: 'Migré les pages de consultation et les exports Excel du service Java vers PHP 8.1. La page ne passe plus par Angular, puis une API Java, puis la base.',
+            en: 'I moved the consultation pages and the Excel exports from Java to PHP 8.1. The Java layer is no longer needed for these features.',
+            fr: 'J’ai migré les pages de consultation et les exports Excel de Java vers PHP 8.1. La couche Java n’est plus nécessaire pour ces fonctionnalités.',
           },
           {
-            en: 'Found a wrong occupancy formula in the old export: sold or unavailable homes were counted. I fixed the rule with the business owners, so the ratio is now occupied homes over homes that can be occupied.',
-            fr: 'Trouvé une formule d’occupation fausse dans l’ancien export : les logements vendus ou indisponibles étaient comptés. J’ai revu la règle avec les référents métier : le taux porte maintenant sur les logements occupés par rapport aux logements occupables.',
+            en: 'While reading the old Java code I found a wrong formula for the occupancy rate. Sold homes were counted. I fixed the rule with the people who use these figures.',
+            fr: 'En relisant l’ancien code Java j’ai trouvé une formule fausse pour le taux d’occupation. Les logements vendus étaient comptés. J’ai corrigé la règle avec les personnes qui utilisent ces chiffres.',
           },
           {
-            en: 'Put the SQL joins in Manager classes to keep queries out of the display code, and added cascading filters: choosing a region updates the district list without reloading the page.',
-            fr: 'Regroupé les jointures SQL dans des classes Manager pour séparer les requêtes de l’affichage, et ajouté des filtres en cascade : choisir une région met à jour la liste des districts sans recharger la page.',
+            en: 'I added cascading filters: when you pick a region the list of districts updates without reloading the page.',
+            fr: 'J’ai ajouté des filtres en cascade : quand on choisit une région la liste des districts se met à jour sans recharger la page.',
           },
           {
-            en: 'Added incident tracking on tenant files, with an alert icon, and fixed two bugs that appeared after the move to Linux: broken accented characters and missing photos and plans.',
-            fr: 'Ajouté le suivi des incidents sur les fiches locataires, avec une icône d’alerte, et corrigé deux bugs apparus après le passage sous Linux : les accents cassés et les photos et plans introuvables.',
+            en: 'I added an alert icon on tenant files when an incident is recorded. I also fixed broken accents and missing photos after the move to Linux.',
+            fr: 'J’ai ajouté une icône d’alerte sur les fiches locataires quand un incident est enregistré. J’ai aussi corrigé les accents cassés et les photos introuvables après le passage sous Linux.',
           },
         ],
       },
       {
-        title: { en: 'GDPR scripts that stay fast', fr: 'Des scripts RGPD qui restent rapides' },
+        title: { en: 'GDPR scripts', fr: 'Les scripts RGPD' },
         paragraphs: [
           {
-            en: 'I wrote two SQL scripts. The first anonymises applications that never led to a home. The second deletes the personal data of former tenants five years after they leave, but keeps the move-in and move-out history used for property management.',
-            fr: 'J’ai écrit deux scripts SQL. Le premier anonymise les candidatures qui n’ont pas abouti à un logement. Le second supprime les données personnelles des anciens locataires cinq ans après leur départ, tout en gardant l’historique des entrées et sorties utile à la gestion du patrimoine.',
+            en: 'I wrote two SQL scripts. The first one anonymises applications that never got a home. The second one deletes the personal data of former tenants five years after they leave. The history of moves is kept because it is still used.',
+            fr: 'J’ai écrit deux scripts SQL. Le premier anonymise les candidatures qui n’ont pas obtenu de logement. Le second supprime les données personnelles des anciens locataires cinq ans après leur départ. L’historique des entrées et sorties est gardé car il sert encore.',
           },
           {
-            en: 'A CTE computes the list of records once, and every update uses it inside one transaction: if anything fails, nothing is changed. EXPLAIN ANALYZE showed a full scan of the occupancy table, so I added a partial index on the leaving dates.',
-            fr: 'Une CTE calcule une seule fois la liste des enregistrements, puis toutes les mises à jour l’utilisent dans une même transaction : en cas d’erreur, rien n’est modifié. EXPLAIN ANALYZE montrait un parcours complet de la table des occupations, j’ai donc ajouté un index partiel sur les dates de sortie.',
+            en: 'Everything runs in one transaction so nothing changes if there is an error. With EXPLAIN ANALYZE I saw that PostgreSQL was reading the whole table. A partial index on the leaving dates fixed it.',
+            fr: 'Tout se fait dans une seule transaction donc rien ne change en cas d’erreur. Avec EXPLAIN ANALYZE j’ai vu que PostgreSQL lisait toute la table. Un index partiel sur les dates de sortie a réglé le problème.',
           },
         ],
         figures: [
@@ -185,8 +182,8 @@ export const PROJECTS: Project[] = [
             kind: 'diagram',
             id: 'explain-plan',
             caption: {
-              en: 'Query plan of the purge before and after the partial index (PostgreSQL estimates on a test volume).',
-              fr: 'Plan d’exécution de la purge avant et après l’index partiel (estimations PostgreSQL sur un volume de test).',
+              en: 'Estimated time of the purge query before and after the index.',
+              fr: 'Temps estimé de la requête de purge avant et après l’index.',
             },
           },
         ],
@@ -199,14 +196,14 @@ export const PROJECTS: Project[] = [
     title: 'Digidel',
     year: '2026',
     tagline: {
-      en: 'Sprint work on an app that tracks the delegation hours of staff representatives (Spring Boot and Vue.js).',
-      fr: 'Travail en sprints sur une application qui suit les heures de délégation des représentants du personnel (Spring Boot et Vue.js).',
+      en: 'User stories in sprints on an app that tracks the hours of staff representatives.',
+      fr: 'Des user stories en sprint sur une application qui suit les heures des représentants du personnel.',
     },
     context: { en: 'Summer 2026 at AREA (APRR group)', fr: 'Été 2026 chez AREA (groupe APRR)' },
     period: { en: 'July – August 2026', fr: 'Juillet – août 2026' },
-    role: { en: 'Full-stack developer', fr: 'Développeur full stack' },
-    team: { en: 'Scrum team, user stories reviewed through pull requests', fr: 'Équipe Scrum, user stories relues en pull request' },
-    stack: ['Java', 'Spring Boot', 'JPA', 'Flyway', 'MapStruct', 'Vue.js', 'Vuex', 'Vuetify', 'OAuth2', 'Azure DevOps'],
+    role: { en: 'Apprentice in a Scrum team', fr: 'Apprenti dans une équipe Scrum' },
+    team: { en: 'Scrum team', fr: 'Équipe Scrum' },
+    stack: ['Java', 'Spring Boot', 'Vue.js', 'Vuetify', 'JPA', 'Flyway', 'Azure DevOps'],
     links: [],
     thumbnail: digidelBefore,
     sections: [
@@ -214,17 +211,17 @@ export const PROJECTS: Project[] = [
         title: { en: 'Context', fr: 'Contexte' },
         paragraphs: [
           {
-            en: 'Staff representatives get a number of hours for their mandates. Digidel tracks those hours (credits, carry-overs, donations) and the delegation slips they fill in. I joined the team for the summer and took user stories from the backlog, sprint after sprint.',
-            fr: 'Les représentants du personnel disposent d’heures pour leurs mandats. Digidel suit ces heures (crédits, reports, dons) et les bons de délégation qu’ils remplissent. J’ai rejoint l’équipe pour l’été et pris des user stories du backlog, sprint après sprint.',
+            en: 'Staff representatives have hours for their mandates. Digidel keeps track of these hours and of the delegation slips they fill in. During the summer I joined the team and took user stories from the backlog. Each one went through a pull request on Azure DevOps.',
+            fr: 'Les représentants du personnel ont des heures pour leurs mandats. Digidel suit ces heures et les bons de délégation qu’ils remplissent. Pendant l’été j’ai rejoint l’équipe et pris des user stories du backlog. Chacune passait par une pull request sur Azure DevOps.',
           },
         ],
       },
       {
-        title: { en: 'Keeping two month pickers in sync', fr: 'Synchroniser deux sélecteurs de mois' },
+        title: { en: 'Linking the situation and the planning', fr: 'Relier la situation et le planning' },
         paragraphs: [
           {
-            en: 'The home page shows the representative’s situation and planning, each with its own month picker. Nothing linked them, so you could read February 2026 next to December 2021. Now, in monthly mode, changing one moves the other. In yearly mode they stay independent, as the business asked.',
-            fr: 'L’accueil affiche la situation et le planning du représentant, chacun avec son sélecteur de mois. Rien ne les reliait, on pouvait donc lire février 2026 à côté de décembre 2021. En mode mensuel, changer l’un déplace maintenant l’autre. En mode annuel ils restent indépendants, comme demandé par le métier.',
+            en: 'On the home page the situation and the planning each had their own month list. Nothing linked them. You could see February 2026 on one side and December 2021 on the other. Now in monthly mode changing one month also changes the other.',
+            fr: 'Sur l’accueil, la situation et le planning avaient chacun leur liste de mois. Rien ne les reliait. On pouvait voir février 2026 d’un côté et décembre 2021 de l’autre. Maintenant en mode mensuel changer le mois de l’un change aussi l’autre.',
           },
         ],
         figures: [
@@ -233,74 +230,64 @@ export const PROJECTS: Project[] = [
             pictures: [
               digidelBefore,
               img('/images/digidel/digidel-sync-apres.webp', 1600, 666, {
-                en: 'After: situation and planning both show September 2026',
+                en: 'After: the situation and the planning both show September 2026',
                 fr: 'Après : la situation et le planning affichent tous les deux septembre 2026',
               }),
             ],
-            caption: { en: 'Before and after.', fr: 'Avant et après.' },
+            caption: { en: 'Before and after the change.', fr: 'Avant et après la modification.' },
           },
         ],
       },
       {
-        title: { en: 'A sort that undid another sort', fr: 'Un tri qui en annulait un autre' },
+        title: { en: 'Sorting the periods', fr: 'Trier les périodes' },
         paragraphs: [
           {
-            en: 'Users wanted the most recent periods first. The repository already sorted them that way, and the selector component did not touch the order. The cause was in the callback that runs after login: it sorted the periods again, oldest first, before storing them. Reversing that comparison fixed every period list in the app.',
-            fr: 'Les utilisateurs voulaient voir les périodes les plus récentes en premier. Le repository les triait déjà dans cet ordre et le composant de sélection ne changeait rien. La cause était dans le callback exécuté après la connexion : il retriait les périodes, de la plus ancienne à la plus récente, avant de les ranger dans le store. Inverser cette comparaison a corrigé toutes les listes de périodes de l’application.',
+            en: 'Users wanted the latest months at the top of the lists. The back end already sorted them that way. I followed the data in the front end and found a second sort run just after login. It put the oldest months first. I reversed it and every list in the app was fixed.',
+            fr: 'Les utilisateurs voulaient les mois les plus récents en haut des listes. Le back-end les triait déjà dans cet ordre. J’ai suivi les données dans le front et j’ai trouvé un deuxième tri lancé juste après la connexion. Il remettait les mois les plus anciens en premier. Je l’ai inversé et toutes les listes de l’application étaient corrigées.',
           },
         ],
         figures: [
           {
-            kind: 'code',
-            language: 'javascript',
-            code: `// AuthorizationCodeCallbackView.vue
-// before: oldest first
-periodes.sort((a, b) => new Date(a.debut).getTime() - new Date(b.debut).getTime())
-// after: most recent first
-periodes.sort((a, b) => new Date(b.debut).getTime() - new Date(a.debut).getTime())`,
-            caption: { en: 'The one-line fix, once the cause was found.', fr: 'La correction d’une ligne, une fois la cause trouvée.' },
-          },
-          {
             kind: 'picture',
             picture: img('/images/digidel/digidel-periodes.webp', 1600, 668, {
-              en: 'Period list sorted from the most recent month',
-              fr: 'Liste des périodes triée à partir du mois le plus récent',
+              en: 'List of periods with the latest month first',
+              fr: 'Liste des périodes avec le mois le plus récent en premier',
             }),
           },
         ],
       },
       {
-        title: { en: 'Other stories', fr: 'Autres user stories' },
+        title: { en: 'Other user stories', fr: 'Les autres user stories' },
         bullets: [
           {
-            en: 'Prefilled dates: when a mandate is added, the end date now comes from the active mandate through a new API endpoint, and the date fields come after the fields they depend on.',
-            fr: 'Dates préremplies : à l’ajout d’un mandat, la date de fin vient maintenant du mandat actif grâce à un nouvel endpoint, et les champs de date sont placés après ceux dont ils dépendent.',
+            en: 'When you add a mandate the end date is now filled in from the active mandate. I added the API endpoint for it.',
+            fr: 'Quand on ajoute un mandat la date de fin est maintenant remplie à partir du mandat actif. J’ai ajouté l’endpoint d’API pour ça.',
           },
           {
-            en: 'E-mail and UPN: the uniqueness rule moved from the e-mail address to the UPN (the Windows login), so several people can share a team mailbox. Login looks up the UPN first, then the e-mail as a fallback.',
-            fr: 'Mail et UPN : la règle d’unicité est passée du mail à l’UPN (l’identifiant Windows), pour que plusieurs personnes puissent partager une boîte générique. La connexion cherche d’abord l’UPN, puis le mail en secours.',
+            en: 'The e-mail and the UPN (the Windows login) are now two separate fields. The UPN must be unique but several people can share the same e-mail.',
+            fr: 'Le mail et l’UPN (l’identifiant Windows) sont maintenant deux champs séparés. L’UPN doit être unique mais plusieurs personnes peuvent avoir le même mail.',
           },
           {
-            en: 'An interface table for the HR system’s employees, with its JPA entity and repository, as the base for creating users from HR data.',
-            fr: 'Une table d’interface pour les salariés de l’outil RH, avec son entité JPA et son repository, comme base pour créer des utilisateurs à partir des données RH.',
+            en: 'I created the table that will receive employees from the HR tool, with its JPA entity.',
+            fr: 'J’ai créé la table qui recevra les salariés de l’outil RH, avec son entité JPA.',
           },
         ],
         figures: [
           {
             kind: 'picture',
             picture: img('/images/digidel/digidel-ajout-mandat.webp', 897, 456, {
-              en: 'Add a mandate dialog with the end date already filled in',
+              en: 'Add a mandate window with the end date already filled in',
               fr: 'Fenêtre d’ajout d’un mandat avec la date de fin déjà remplie',
             }),
           },
           {
             kind: 'picture',
             picture: img('/images/digidel/digidel-utilisateur.webp', 1600, 664, {
-              en: 'User form with separate e-mail and UPN fields, filled with fictitious data',
-              fr: 'Fiche utilisateur avec les champs mail et UPN séparés, remplie avec des données fictives',
+              en: 'User form with separate e-mail and UPN fields',
+              fr: 'Fiche utilisateur avec les champs mail et UPN séparés',
             }, {
-              en: 'User form with separate e-mail and UPN fields. The data is fictitious.',
-              fr: 'Fiche utilisateur avec les champs mail et UPN séparés. Les données sont fictives.',
+              en: 'User form with separate e-mail and UPN fields. The data shown is made up.',
+              fr: 'Fiche utilisateur avec les champs mail et UPN séparés. Les données affichées sont fictives.',
             }),
           },
         ],
@@ -315,26 +302,27 @@ periodes.sort((a, b) => new Date(b.debut).getTime() - new Date(a.debut).getTime(
     title: 'QRShield',
     year: '2026',
     tagline: {
-      en: 'A mobile app that checks where a QR code really leads before you open it.',
-      fr: 'Une application mobile qui vérifie où mène vraiment un QR code avant de l’ouvrir.',
+      en: 'A mobile app that checks where a QR code leads before you open it.',
+      fr: 'Une application mobile qui vérifie où mène un QR code avant de l’ouvrir.',
     },
     context: { en: 'Personal project', fr: 'Projet personnel' },
     period: { en: '2026', fr: '2026' },
-    role: { en: 'Everything, from API to app', fr: 'Tout, de l’API à l’application' },
+    role: { en: 'Whole project', fr: 'Projet complet' },
     team: { en: 'Solo', fr: 'Seul' },
-    stack: ['Python', 'FastAPI', 'SQLAlchemy', 'PostgreSQL', 'PostGIS', 'React Native', 'Expo', 'TypeScript', 'React', 'Leaflet', 'Docker', 'Playwright'],
+    stack: ['Python', 'FastAPI', 'PostgreSQL', 'PostGIS', 'React Native', 'TypeScript', 'Docker'],
     links: [
-      { label: { en: 'Source code', fr: 'Code source' }, url: 'https://github.com/ManuelDavid69/QRShield' },
+      { label: { en: 'GitHub', fr: 'GitHub' }, url: 'https://github.com/ManuelDavid69/QRShield' },
       { label: { en: 'Demo page', fr: 'Page de démo' }, url: 'https://manueldavid69.github.io/QRShield/' },
       { label: { en: 'Android APK', fr: 'APK Android' }, url: 'https://github.com/ManuelDavid69/QRShield/releases/latest' },
     ],
+    thumbnail: qrshieldDemo,
     sections: [
       {
-        title: { en: 'Why', fr: 'Pourquoi' },
+        title: { en: 'Why this project', fr: 'Pourquoi ce projet' },
         paragraphs: [
           {
-            en: 'People scan QR codes on menus, parking meters and posters without checking where they lead. Sticking a fake code on a parking meter is enough to send people to a fraudulent payment page. This is called quishing, and it already has victims in France.',
-            fr: 'On scanne des QR codes sur des menus, des horodateurs ou des affiches sans vérifier où ils mènent. Coller un faux code sur un horodateur suffit pour envoyer les gens vers une fausse page de paiement. On appelle ça le quishing, et il a déjà fait des victimes en France.',
+            en: 'QR codes are everywhere: menus, parking meters, posters. Nobody checks where they lead. A fake QR code stuck on a parking meter is enough to send people to a fake payment page. This scam is called quishing. I wanted a project in cybersecurity that solves a real everyday problem.',
+            fr: 'Les QR codes sont partout : menus, horodateurs, affiches. Personne ne vérifie où ils mènent. Un faux QR code collé sur un horodateur suffit pour envoyer les gens vers une fausse page de paiement. Cette arnaque s’appelle le quishing. Je voulais un projet de cybersécurité qui règle un vrai problème du quotidien.',
           },
         ],
       },
@@ -342,29 +330,30 @@ periodes.sort((a, b) => new Date(b.debut).getTime() - new Date(a.debut).getTime(
         title: { en: 'How it works', fr: 'Comment ça marche' },
         bullets: [
           {
-            en: 'The API follows the link to its final address, checks the domain against Google Safe Browsing and VirusTotal, spots look-alike domains such as paypa1.com, and flags direct downloads of .apk or .exe files.',
-            fr: 'L’API suit le lien jusqu’à son adresse finale, vérifie le domaine auprès de Google Safe Browsing et VirusTotal, repère les domaines qui imitent un vrai site comme paypa1.com et signale les téléchargements directs de fichiers .apk ou .exe.',
+            en: 'The API follows the link to its final address and checks the domain with Google Safe Browsing and VirusTotal.',
+            fr: 'L’API suit le lien jusqu’à son adresse finale et vérifie le domaine avec Google Safe Browsing et VirusTotal.',
           },
           {
-            en: 'The app shows a verdict (safe, suspicious or dangerous) with the reasons, and the user decides whether to open the link.',
-            fr: 'L’application affiche un verdict (sûr, suspect ou dangereux) avec ses raisons, et l’utilisateur décide d’ouvrir le lien ou non.',
+            en: 'It spots domains that copy real ones like paypa1.com and links that download an .apk or .exe file.',
+            fr: 'Elle repère les domaines qui copient de vrais sites comme paypa1.com et les liens qui téléchargent un fichier .apk ou .exe.',
           },
           {
-            en: 'Dangerous codes are reported anonymously and shown on a map, in the app and on a public web page. PostGIS runs the geographic queries.',
-            fr: 'Les codes dangereux sont signalés anonymement et affichés sur une carte, dans l’application et sur une page web publique. PostGIS fait les requêtes géographiques.',
+            en: 'The app gives a verdict with the reasons. The user decides to open the link or not.',
+            fr: 'L’application donne un verdict avec ses raisons. L’utilisateur décide d’ouvrir le lien ou non.',
           },
           {
-            en: 'Each scan is saved, and a statistics screen shows the user’s habits. Statistics are computed in SQL.',
-            fr: 'Chaque scan est enregistré, et un écran de statistiques montre les habitudes de l’utilisateur. Les statistiques sont calculées en SQL.',
+            en: 'Dangerous codes are reported without any personal data and shown on a map. PostGIS handles the map queries.',
+            fr: 'Les codes dangereux sont signalés sans donnée personnelle et affichés sur une carte. PostGIS gère les requêtes de la carte.',
           },
         ],
+        figures: [{ kind: 'picture', picture: qrshieldDemo }],
       },
       {
-        title: { en: 'Choices I can explain', fr: 'Des choix que je peux expliquer' },
+        title: { en: 'A choice I made', fr: 'Un choix que j’ai fait' },
         paragraphs: [
           {
-            en: 'I considered Kotlin Multiplatform, which builds on my native Android experience. But I work on Windows, and building and testing the iOS version of a KMP app requires a Mac. Expo let me test on Android and iPhone, with the same language as the web page.',
-            fr: 'J’ai envisagé Kotlin Multiplatform, qui prolongeait mon expérience Android native. Mais je travaille sous Windows, et compiler puis tester la version iOS d’une application KMP demande un Mac. Expo me permet de tester sur Android et iPhone, avec le même langage que la page web.',
+            en: 'I first thought about Kotlin Multiplatform because I already know native Android. But I work on Windows and testing the iOS version needs a Mac. With Expo I can test on Android and iPhone and use the same language as the web page.',
+            fr: 'J’ai d’abord pensé à Kotlin Multiplatform car je connais déjà Android natif. Mais je travaille sous Windows et tester la version iOS demande un Mac. Avec Expo je peux tester sur Android et iPhone et garder le même langage que la page web.',
           },
         ],
       },
@@ -376,26 +365,30 @@ periodes.sort((a, b) => new Date(b.debut).getTime() - new Date(a.debut).getTime(
     title: 'PumpCast',
     year: '2026',
     tagline: {
-      en: 'A web app that forecasts fuel prices station by station, and says honestly when it cannot.',
-      fr: 'Une application web qui prévoit le prix des carburants station par station, et dit franchement quand elle ne sait pas.',
+      en: 'A web app that forecasts fuel prices for each station over the next 7 days.',
+      fr: 'Une application web qui prévoit le prix des carburants de chaque station sur 7 jours.',
     },
     context: { en: 'Personal project', fr: 'Projet personnel' },
     period: { en: '2026', fr: '2026' },
-    role: { en: 'Everything, from data pipeline to front end', fr: 'Tout, du pipeline de données au front' },
+    role: { en: 'Whole project', fr: 'Projet complet' },
     team: { en: 'Solo', fr: 'Seul' },
-    stack: ['Go', 'GraphQL', 'Next.js', 'TypeScript', 'MongoDB', 'Redis', 'Python', 'scikit-learn', 'GitHub Actions', 'Docker'],
+    stack: ['Go', 'GraphQL', 'Next.js', 'MongoDB', 'Redis', 'scikit-learn', 'GitHub Actions'],
     links: [
-      { label: { en: 'Live app', fr: 'Application en ligne' }, url: 'https://pump-cast.vercel.app' },
-      { label: { en: 'Source code', fr: 'Code source' }, url: 'https://github.com/ManuelDavid69/PumpCast' },
+      { label: { en: 'Live app', fr: 'Site en ligne' }, url: 'https://pump-cast.vercel.app' },
+      { label: { en: 'GitHub', fr: 'GitHub' }, url: 'https://github.com/ManuelDavid69/PumpCast' },
     ],
     thumbnail: pumpcastHome,
     sections: [
       {
-        title: { en: 'The question', fr: 'La question' },
+        title: { en: 'The idea', fr: 'L’idée' },
         paragraphs: [
           {
-            en: 'Fuel price apps show today’s price. The real question is different: should I fill up now or wait a few days? PumpCast looks at the station’s history, the oil price, the euro to dollar rate, holidays and school breaks to estimate the next seven days. All the data comes from official open sources.',
-            fr: 'Les applis de prix montrent le prix du jour. La vraie question est autre : je fais le plein maintenant ou j’attends quelques jours ? PumpCast regarde l’historique de la station, le cours du pétrole, le taux euro-dollar, les jours fériés et les vacances pour estimer les sept prochains jours. Toutes les données viennent de sources ouvertes officielles.',
+            en: 'Fuel apps show today’s price. But what people want to know is whether to fill up now or wait. PumpCast uses the station’s price history, the oil price, holidays and school breaks to estimate the next 7 days. All the data comes from official open data.',
+            fr: 'Les applis de carburant montrent le prix du jour. Mais ce qu’on veut savoir c’est s’il faut faire le plein maintenant ou attendre. PumpCast utilise l’historique de la station, le prix du pétrole, les jours fériés et les vacances pour estimer les 7 prochains jours. Toutes les données viennent de l’open data officiel.',
+          },
+          {
+            en: 'I built it to learn technologies I had never used: Go, GraphQL, MongoDB, Redis, Next.js and machine learning.',
+            fr: 'Je l’ai fait pour apprendre des technologies que je n’avais jamais utilisées : Go, GraphQL, MongoDB, Redis, Next.js et le machine learning.',
           },
         ],
         figures: [{ kind: 'picture', picture: pumpcastHome }],
@@ -404,46 +397,46 @@ periodes.sort((a, b) => new Date(b.debut).getTime() - new Date(a.debut).getTime(
         title: { en: 'How it is built', fr: 'Comment c’est construit' },
         bullets: [
           {
-            en: 'A Go program downloads the official price feed, updates the stations and stores one price per station, fuel and day in a MongoDB time series collection.',
-            fr: 'Un programme Go télécharge le flux officiel des prix, met à jour les stations et enregistre un prix par station, carburant et jour dans une collection time series MongoDB.',
+            en: 'A Go program downloads the official price feed and stores the prices in MongoDB.',
+            fr: 'Un programme Go télécharge le flux officiel des prix et les enregistre dans MongoDB.',
           },
           {
-            en: 'A GraphQL API in Go serves each page exactly what it needs. Redis caches current prices and department statistics.',
-            fr: 'Une API GraphQL en Go donne à chaque page exactement ce dont elle a besoin. Redis met en cache les prix actuels et les statistiques par département.',
+            en: 'A GraphQL API in Go gives each page only the data it needs. Redis keeps the current prices in cache.',
+            fr: 'Une API GraphQL en Go donne à chaque page seulement les données dont elle a besoin. Redis garde les prix actuels en cache.',
           },
           {
-            en: 'The model is trained weekly and predicts daily in batch, through GitHub Actions. There is no Python server to host.',
-            fr: 'Le modèle est entraîné chaque semaine et prédit chaque jour en batch, via GitHub Actions. Pas de serveur Python à héberger.',
+            en: 'The model is trained every week with scikit-learn and the forecasts are made every day by GitHub Actions.',
+            fr: 'Le modèle est entraîné chaque semaine avec scikit-learn et les prévisions sont faites chaque jour par GitHub Actions.',
           },
         ],
         figures: [
           {
             kind: 'picture',
             picture: img('/images/pumpcast/station.webp', 1280, 1100, {
-              en: 'Station page with the recommendation, price history and forecast range',
-              fr: 'Fiche station avec la recommandation, l’historique des prix et la fourchette de prévision',
+              en: 'Station page with the advice and the price history',
+              fr: 'Fiche station avec le conseil et l’historique des prix',
             }),
           },
         ],
       },
       {
-        title: { en: 'An honest model', fr: 'Un modèle honnête' },
+        title: { en: 'Being honest about the model', fr: 'Être honnête sur le modèle' },
         paragraphs: [
           {
-            en: 'On most days a station does not change its price, so “the price stays the same” is very hard to beat. At three days, my model is off by 1.579 cents per litre on average, against 1.580 for that naive guess. The best gain is 1% at seven days.',
-            fr: 'La plupart des jours, une station ne change pas son prix, donc « le prix ne bouge pas » est très dur à battre. À trois jours, mon modèle se trompe en moyenne de 1,579 centime par litre, contre 1,580 pour cette prévision naïve. Le meilleur gain est de 1 % à sept jours.',
+            en: 'Most days a station does not change its price. So guessing that the price stays the same is already very accurate. At 3 days my model is wrong by 1.579 cents on average and this simple guess by 1.580 cents. That is almost the same.',
+            fr: 'La plupart du temps une station ne change pas son prix. Donc prévoir que le prix ne bouge pas est déjà très juste. À 3 jours mon modèle se trompe en moyenne de 1,579 centime et cette prévision simple de 1,580 centime. C’est presque pareil.',
           },
           {
-            en: 'So the app only draws the horizons where the model beats the naive guess, and each type of advice is replayed on past data and turned off if it would not have saved money. A model page shows all these numbers.',
-            fr: 'L’application n’affiche donc que les horizons où le modèle bat la prévision naïve, et chaque type de conseil est rejoué sur le passé puis désactivé s’il n’aurait pas fait gagner d’argent. Une page dédiée au modèle affiche tous ces chiffres.',
+            en: 'I chose to show it. The app only draws the days where the model does better. An advice is shown only if it would have saved money in the past. A page of the site explains all the figures.',
+            fr: 'J’ai choisi de le montrer. L’application n’affiche que les jours où le modèle fait mieux. Un conseil n’est affiché que s’il aurait fait gagner de l’argent dans le passé. Une page du site explique tous les chiffres.',
           },
         ],
         figures: [
           {
             kind: 'picture',
             picture: img('/images/pumpcast/modele.webp', 1280, 1300, {
-              en: 'Model page comparing the model to the naive forecast for each horizon',
-              fr: 'Page du modèle comparant le modèle à la prévision naïve pour chaque horizon',
+              en: 'Model page comparing the model with the simple forecast',
+              fr: 'Page du modèle qui compare le modèle à la prévision simple',
             }),
           },
         ],
@@ -458,42 +451,42 @@ periodes.sort((a, b) => new Date(b.debut).getTime() - new Date(a.debut).getTime(
     title: 'IoT mini-architecture',
     year: '2026',
     tagline: {
-      en: 'From a micro:bit sensor to an Android app, through radio, a serial link, a UDP server and Grafana.',
-      fr: 'D’un capteur micro:bit à une application Android, en passant par la radio, une liaison série, un serveur UDP et Grafana.',
+      en: 'A full IoT chain from a micro:bit sensor to an Android app.',
+      fr: 'Une chaîne IoT complète d’un capteur micro:bit jusqu’à une application Android.',
     },
-    context: { en: 'CPE Lyon, embedded systems and IoT module', fr: 'CPE Lyon, module développement embarqué et IoT' },
+    context: { en: 'CPE Lyon, embedded systems and IoT', fr: 'CPE Lyon, développement embarqué et IoT' },
     period: { en: '2026', fr: '2026' },
-    role: { en: 'Team member', fr: 'Membre de l’équipe' },
+    role: { en: 'Team project', fr: 'Projet d’équipe' },
     team: { en: 'Team of 4', fr: 'Équipe de 4' },
-    stack: ['C++', 'micro:bit', 'Python', 'UDP', 'UART', 'SQLite', 'Android', 'Grafana', 'Docker Compose'],
-    links: [{ label: { en: 'Source code', fr: 'Code source' }, url: 'https://github.com/stonoly/CPE-iot_project-3IRC' }],
+    stack: ['C++', 'micro:bit', 'Python', 'SQLite', 'Android', 'Grafana', 'Docker'],
+    links: [{ label: { en: 'GitHub', fr: 'GitHub' }, url: 'https://github.com/stonoly/CPE-iot_project-3IRC' }],
     sections: [
       {
-        title: { en: 'The chain', fr: 'La chaîne' },
+        title: { en: 'The project', fr: 'Le projet' },
         paragraphs: [
           {
-            en: 'A micro:bit with sensors measures temperature, humidity, pressure and light, and shows them on an OLED screen. It sends them by radio to a second micro:bit acting as a gateway, which passes them to a Python server over a serial link. The server stores the values and answers UDP requests from an Android app. The app can also send back the display order of the values on the screen.',
-            fr: 'Un micro:bit équipé de capteurs mesure la température, l’humidité, la pression et la luminosité, et les affiche sur un écran OLED. Il les envoie par radio à un second micro:bit qui sert de passerelle et les transmet à un serveur Python par liaison série. Le serveur stocke les valeurs et répond aux requêtes UDP d’une application Android. L’application peut aussi renvoyer l’ordre d’affichage des valeurs sur l’écran.',
+            en: 'A micro:bit measures temperature, humidity, pressure and light. It sends them by radio to a second micro:bit used as a gateway. The gateway sends them to a Python server over a serial link. The server stores them in SQLite and answers an Android app over UDP. From the app you can also change the order of the values shown on the sensor screen.',
+            fr: 'Un micro:bit mesure la température, l’humidité, la pression et la luminosité. Il les envoie par radio à un second micro:bit qui sert de passerelle. La passerelle les transmet à un serveur Python par liaison série. Le serveur les stocke dans SQLite et répond à une application Android en UDP. Depuis l’application on peut aussi changer l’ordre d’affichage des valeurs sur l’écran du capteur.',
           },
         ],
         figures: [
           {
             kind: 'diagram',
             id: 'iot-chain',
-            caption: { en: 'The data path, and how each link is protected.', fr: 'Le trajet des données, et la protection de chaque liaison.' },
+            caption: { en: 'The path of the data.', fr: 'Le trajet des données.' },
           },
         ],
       },
       {
-        title: { en: 'Protecting the frames', fr: 'Protéger les trames' },
+        title: { en: 'Securing the radio link', fr: 'Sécuriser la liaison radio' },
         paragraphs: [
           {
-            en: 'We first encrypted radio frames with XOR and a fixed key. It is cheap enough for a micro:bit, but identical frames produce similar bytes, so patterns show. We added a nonce to each frame. The gateway does not forward data in clear: it encrypts it again with XORSHIFT32 and another key, and wraps it in a frame with a start byte, the payload size and a CRC16.',
-            fr: 'Nous avons d’abord chiffré les trames radio avec un XOR et une clé fixe. C’est assez léger pour un micro:bit, mais des trames identiques donnent des octets similaires et des motifs apparaissent. Nous avons ajouté un nonce à chaque trame. La passerelle ne renvoie pas les données en clair : elle les rechiffre avec XORSHIFT32 et une autre clé, dans une trame avec un octet de début, la taille du message et un CRC16.',
+            en: 'At first the values were sent in clear text. Anyone nearby could read them. We then used XOR with a fixed key but identical frames gave identical bytes. So we added a nonce that changes for every frame. A CRC16 detects broken frames and the gateway ignores a frame if its nonce was already used.',
+            fr: 'Au début les valeurs étaient envoyées en clair. N’importe qui à portée pouvait les lire. Nous avons ensuite utilisé un XOR avec une clé fixe mais deux trames identiques donnaient les mêmes octets. Nous avons donc ajouté un nonce qui change à chaque trame. Un CRC16 détecte les trames abîmées et la passerelle ignore une trame si son nonce a déjà servi.',
           },
           {
-            en: 'This is light obfuscation suited to the hardware, not strong encryption, and we wrote that limit down in our report.',
-            fr: 'C’est un brouillage léger adapté au matériel, pas un chiffrement fort, et nous avons écrit cette limite dans notre rapport.',
+            en: 'AES would have been better. The micro:bit has an AES chip but our SDK did not give access to it. We wrote this limit in our report.',
+            fr: 'AES aurait été mieux. Le micro:bit a une puce AES mais notre SDK ne permettait pas de l’utiliser. Nous avons écrit cette limite dans notre rapport.',
           },
         ],
       },
@@ -502,33 +495,39 @@ periodes.sort((a, b) => new Date(b.debut).getTime() - new Date(a.debut).getTime(
   {
     slug: 'lpkf',
     group: 'school',
-    title: 'LPKF submission platform',
+    title: 'LPKF file submission',
     year: '2025',
     tagline: {
-      en: 'A Flask web app where students submit their KiCad boards for the school’s PCB engraver, and teachers approve them.',
-      fr: 'Une application Flask où les étudiants déposent leurs cartes KiCad pour la graveuse de circuits de l’IUT, et où les professeurs les valident.',
+      en: 'A Flask web app where students submit their circuit boards for the school’s engraving machine.',
+      fr: 'Une application Flask où les étudiants déposent leurs cartes électroniques pour la graveuse de l’IUT.',
     },
     context: { en: 'IUT Lyon 1, BUT GEII', fr: 'IUT Lyon 1, BUT GEII' },
     period: { en: 'February – May 2025', fr: 'Février – mai 2025' },
-    role: { en: 'Team member', fr: 'Membre de l’équipe' },
+    role: { en: 'Team project', fr: 'Projet d’équipe' },
     team: { en: 'Team of 5', fr: 'Équipe de 5' },
     stack: ['Python', 'Flask', 'SQLAlchemy', 'MySQL', 'Jinja2'],
     links: [{ label: { en: 'Demo video', fr: 'Vidéo de démo' }, url: 'https://youtu.be/qo4dVAajl7M' }],
     sections: [
       {
-        title: { en: 'What it does', fr: 'Ce que fait l’application' },
+        title: { en: 'The project', fr: 'Le projet' },
+        paragraphs: [
+          {
+            en: 'At the IUT students design circuit boards with KiCad. They are then engraved on an LPKF machine. We built a web platform to submit these files and follow their validation.',
+            fr: 'À l’IUT les étudiants conçoivent des cartes électroniques avec KiCad. Elles sont ensuite gravées sur une machine LPKF. Nous avons fait une plateforme web pour déposer ces fichiers et suivre leur validation.',
+          },
+        ],
         bullets: [
           {
-            en: 'Students upload their KiCad project as a ZIP file and follow its status.',
-            fr: 'Les étudiants déposent leur projet KiCad en ZIP et suivent son statut.',
+            en: 'Students upload their project as a ZIP file and follow its status.',
+            fr: 'Les étudiants déposent leur projet en ZIP et suivent son statut.',
           },
           {
-            en: 'Teachers run automatic checks on the KiCad files from the project list, then approve or reject each project.',
-            fr: 'Les professeurs lancent des vérifications automatiques des fichiers KiCad depuis la liste des projets, puis valident ou refusent chaque projet.',
+            en: 'Teachers run automatic checks on the KiCad files and then accept or reject the project.',
+            fr: 'Les professeurs lancent des vérifications automatiques des fichiers KiCad puis acceptent ou refusent le projet.',
           },
           {
-            en: 'Administrators manage users, roles and the checking rules.',
-            fr: 'Les administrateurs gèrent les utilisateurs, les rôles et les règles de vérification.',
+            en: 'An admin manages users and roles. Login is handled with Flask-Login.',
+            fr: 'Un administrateur gère les utilisateurs et les rôles. La connexion est gérée avec Flask-Login.',
           },
         ],
       },
@@ -537,29 +536,35 @@ periodes.sort((a, b) => new Date(b.debut).getTime() - new Date(a.debut).getTime(
   {
     slug: 'ade-database',
     group: 'school',
-    title: 'ADE activity manager',
+    title: 'ADE database interface',
     year: '2024',
     tagline: {
-      en: 'A PHP interface to add, approve and supervise course activities on top of a timetable database.',
-      fr: 'Une interface PHP pour ajouter, valider et superviser des activités de cours sur une base d’emploi du temps.',
+      en: 'A PHP interface to manage course activities in a timetable database.',
+      fr: 'Une interface PHP pour gérer les activités de cours dans une base d’emploi du temps.',
     },
     context: { en: 'IUT Lyon 1, BUT GEII', fr: 'IUT Lyon 1, BUT GEII' },
     period: { en: 'November – December 2024', fr: 'Novembre – décembre 2024' },
-    role: { en: 'Team member', fr: 'Membre de l’équipe' },
+    role: { en: 'Team project', fr: 'Projet d’équipe' },
     team: { en: 'Team of 4', fr: 'Équipe de 4' },
     stack: ['PHP', 'MySQL', 'PDO', 'HTML', 'CSS'],
     links: [],
     sections: [
       {
-        title: { en: 'What it does', fr: 'Ce que fait l’application' },
+        title: { en: 'The project', fr: 'Le projet' },
+        paragraphs: [
+          {
+            en: 'The timetable of the IUT comes from a tool called ADE. We had to build a web interface to manage course activities on top of a copy of this database.',
+            fr: 'L’emploi du temps de l’IUT vient d’un outil qui s’appelle ADE. Nous devions faire une interface web pour gérer les activités de cours sur une copie de cette base.',
+          },
+        ],
         bullets: [
           {
-            en: 'A relational MySQL database models rooms, teachers and requests, with join tables for validations.',
-            fr: 'Une base MySQL relationnelle modélise les salles, les enseignants et les demandes, avec des tables intermédiaires pour les validations.',
+            en: 'A MySQL database with rooms, teachers and requests. Validations go through join tables.',
+            fr: 'Une base MySQL avec les salles, les enseignants et les demandes. Les validations passent par des tables intermédiaires.',
           },
           {
-            en: 'Forms to add and edit activities, a validation page and a supervision page, all with PDO prepared statements.',
-            fr: 'Des formulaires pour ajouter et modifier des activités, une page de validation et une page de supervision, le tout avec des requêtes préparées PDO.',
+            en: 'Pages to add, edit and validate activities and a supervision page. All queries use PDO prepared statements.',
+            fr: 'Des pages pour ajouter, modifier et valider des activités et une page de supervision. Toutes les requêtes utilisent des requêtes préparées PDO.',
           },
         ],
       },
