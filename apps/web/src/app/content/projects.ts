@@ -23,6 +23,27 @@ const qrshieldDemo = img('/images/qrshield/demo.webp', 1600, 1000, {
   fr: 'Page publique de QRShield avec la carte des QR codes signalés',
 });
 
+const bddHome = img('/images/ade-database/accueil.webp', 1440, 500, {
+  en: 'Home page of the activity manager with its four sections',
+  fr: 'Accueil de l’application de gestion des activités avec ses quatre rubriques',
+});
+
+const lpkfMembers = img('/images/lpkf/membres.webp', 1440, 860, {
+  en: 'Admin page listing users with their role',
+  fr: 'Page d’administration avec la liste des utilisateurs et leur rôle',
+}, {
+  en: 'The admin page to manage roles. I ran the app again with made-up users.',
+  fr: 'La page admin pour gérer les rôles. J’ai relancé l’application avec des utilisateurs inventés.',
+});
+
+const iotGrafana = img('/images/iot/grafana.webp', 1600, 362, {
+  en: 'Grafana dashboard with the temperature and humidity measured by the sensor',
+  fr: 'Tableau de bord Grafana avec la température et l’humidité mesurées par le capteur',
+}, {
+  en: 'Real measures recorded by our sensor during a test session and shown in Grafana.',
+  fr: 'De vraies mesures enregistrées par notre capteur pendant une séance de test et affichées dans Grafana.',
+});
+
 export const PROJECTS: Project[] = [
   // ---------------------------------------------------------------- work
   {
@@ -457,6 +478,7 @@ export const PROJECTS: Project[] = [
     team: { en: 'Team of 4', fr: 'Équipe de 4' },
     stack: ['C++', 'micro:bit', 'Python', 'SQLite', 'Android', 'Grafana', 'Docker'],
     links: [{ label: { en: 'GitHub', fr: 'GitHub' }, url: 'https://github.com/stonoly/CPE-iot_project-3IRC' }],
+    thumbnail: iotGrafana,
     sections: [
       {
         title: { en: 'The project', fr: 'Le projet' },
@@ -472,6 +494,7 @@ export const PROJECTS: Project[] = [
             id: 'iot-chain',
             caption: { en: 'The path of the data.', fr: 'Le trajet des données.' },
           },
+          { kind: 'picture', picture: iotGrafana },
         ],
       },
       {
@@ -504,6 +527,7 @@ export const PROJECTS: Project[] = [
     team: { en: 'Team of 5', fr: 'Équipe de 5' },
     stack: ['Python', 'Flask', 'SQLAlchemy', 'MySQL', 'Jinja2'],
     links: [{ label: { en: 'Demo video', fr: 'Vidéo de démo' }, url: 'https://youtu.be/qo4dVAajl7M' }],
+    thumbnail: lpkfMembers,
     sections: [
       {
         title: { en: 'The project', fr: 'Le projet' },
@@ -527,6 +551,19 @@ export const PROJECTS: Project[] = [
             fr: 'Un administrateur gère les utilisateurs et les rôles. La connexion est gérée avec Flask-Login.',
           },
         ],
+        figures: [
+          {
+            kind: 'picture',
+            picture: img('/images/lpkf/depot.webp', 1440, 520, {
+              en: 'Page to submit a project as a ZIP file',
+              fr: 'Page de dépôt d’un projet en fichier ZIP',
+            }),
+          },
+          {
+            kind: 'picture',
+            picture: lpkfMembers,
+          },
+        ],
       },
     ],
   },
@@ -545,6 +582,7 @@ export const PROJECTS: Project[] = [
     team: { en: 'Team of 4', fr: 'Équipe de 4' },
     stack: ['PHP', 'MySQL', 'PDO', 'HTML', 'CSS'],
     links: [],
+    thumbnail: bddHome,
     sections: [
       {
         title: { en: 'The project', fr: 'Le projet' },
@@ -562,6 +600,23 @@ export const PROJECTS: Project[] = [
           {
             en: 'Pages to add, edit and validate activities and a supervision page. All queries use PDO prepared statements.',
             fr: 'Des pages pour ajouter, modifier et valider des activités et une page de supervision. Toutes les requêtes utilisent des requêtes préparées PDO.',
+          },
+          {
+            en: 'MySQL triggers write every insert, update and delete into a journal table. You can see the data before and after each change.',
+            fr: 'Des triggers MySQL enregistrent chaque ajout, modification et suppression dans une table de journal. On voit les données avant et après chaque changement.',
+          },
+        ],
+        figures: [
+          { kind: 'picture', picture: bddHome },
+          {
+            kind: 'picture',
+            picture: img('/images/ade-database/supervision.webp', 1440, 540, {
+              en: 'Supervision page listing the activity requests waiting for approval',
+              fr: 'Page de supervision avec les demandes d’activités en attente de validation',
+            }, {
+              en: 'The supervision page. I ran the app again with demo data and made-up teacher names.',
+              fr: 'La page de supervision. J’ai relancé l’application avec des données de démo et des noms d’enseignants inventés.',
+            }),
           },
         ],
       },
