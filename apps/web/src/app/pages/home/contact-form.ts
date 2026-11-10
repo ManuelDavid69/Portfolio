@@ -24,7 +24,7 @@ type Status = 'idle' | 'sending' | 'sent' | 'error' | 'invalid';
         <input id="cf-website" formControlName="website" tabindex="-1" autocomplete="off" />
       </div>
 
-      <button type="submit" [disabled]="status() === 'sending'">
+      <button type="submit" class="btn btn-primary" [disabled]="status() === 'sending'">
         {{ status() === 'sending' ? i18n.t('formSending') : i18n.t('formSend') }}
       </button>
 
@@ -41,28 +41,34 @@ type Status = 'idle' | 'sending' | 'sent' | 'error' | 'invalid';
     form {
       display: grid;
       gap: 0.35rem;
-      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
     }
     label {
-      font-size: var(--step--1);
+      font-size: 0.875rem;
       font-weight: 600;
-      color: var(--ink);
-      margin-top: 0.75rem;
+      color: var(--heading);
+      margin-top: 0.6rem;
+    }
+    label:first-child {
+      margin-top: 0;
     }
     input,
     textarea {
       font: inherit;
       color: var(--text);
       background: var(--bg);
-      border: 1px solid var(--rule);
-      border-radius: 3px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
       padding: 0.6rem 0.75rem;
       width: 100%;
     }
     input:focus,
     textarea:focus {
       border-color: var(--accent);
-      outline: 1px solid var(--accent);
+      outline: 2px solid var(--accent-soft);
     }
     textarea {
       resize: vertical;
@@ -73,32 +79,15 @@ type Status = 'idle' | 'sending' | 'sent' | 'error' | 'invalid';
     }
     button {
       justify-self: start;
-      margin-top: 1.25rem;
-      font: inherit;
-      font-weight: 600;
-      color: var(--bg);
-      background: var(--ink);
-      border: 0;
-      border-radius: 3px;
-      padding: 0.65rem 1.25rem;
-      cursor: pointer;
-    }
-    button:hover {
-      background: var(--accent);
-    }
-    button:disabled {
-      opacity: 0.6;
-      cursor: progress;
+      margin-top: 1rem;
     }
     .status {
-      min-height: 1.6em;
-      margin-top: 0.5rem;
+      min-height: 1.5em;
+      margin: 0.25rem 0 0;
+      font-size: 0.925rem;
     }
     .error {
-      color: #b42318;
-    }
-    :host-context([data-theme='dark']) .error {
-      color: #ff8f84;
+      color: #dc2626;
     }
   `,
 })

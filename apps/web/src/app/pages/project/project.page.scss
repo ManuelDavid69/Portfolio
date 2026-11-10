@@ -1,103 +1,98 @@
-article {
-  --prose: 40rem;
+.narrow {
+  max-width: 52rem;
 }
 
 .head {
-  padding-block: clamp(2rem, 6vw, 4rem) 2rem;
+  padding-block: 2.5rem 3rem;
+  background: var(--bg-alt);
+  border-bottom: 1px solid var(--border);
 }
 
 .back {
-  font-size: var(--step--1);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 h1 {
   margin-top: 1.5rem;
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 2.75rem);
   font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1;
 }
 
 .tagline {
-  max-width: 34em;
-  margin-top: 1.25rem;
-  font-size: var(--step-1);
-  line-height: 1.45;
-  color: var(--ink);
+  margin: 0.75rem 0 0;
+  font-size: 1.15rem;
+  color: var(--text);
 }
 
 .meta {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1.25rem 2rem;
-  margin: 2.5rem 0 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
+  gap: 1rem;
+  margin: 2rem 0 0;
 
-  .wide {
-    grid-column: 1 / -1;
+  div {
+    padding: 0.85rem 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
   }
 
   dt {
-    font-size: var(--step--1);
+    font-size: 0.8rem;
     color: var(--muted);
   }
 
   dd {
     margin: 0.15rem 0 0;
-    color: var(--ink);
+    font-size: 0.925rem;
+    font-weight: 500;
+    color: var(--heading);
   }
 
   @media (max-width: 52rem) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  @media (max-width: 30rem) {
+  @media (max-width: 26rem) {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
+.stack {
+  margin-top: 1.25rem;
+}
+
 .links {
-  list-style: none;
-  padding: 0;
-  margin: 1.75rem 0 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-
-  a {
-    display: inline-block;
-    padding: 0.45rem 0.9rem;
-    border: 1px solid var(--rule);
-    border-radius: 3px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: var(--step--1);
-  }
-
-  a:hover {
-    border-color: var(--accent);
-  }
+  margin-top: 1.75rem;
 }
 
-.section {
-  padding-top: 2.5rem;
+.content {
+  padding-block: 1rem 4rem;
 
-  h2 {
-    font-size: var(--step-2);
-    margin-bottom: 1rem;
-    max-width: var(--prose);
+  section {
+    padding-top: 2.5rem;
   }
 
-  > p,
-  .bullets {
-    max-width: var(--prose);
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.025rem;
   }
 }
 
 .bullets {
-  padding-left: 1.2rem;
   margin: 0 0 1em;
+  padding-left: 1.25rem;
 
   li {
     margin-bottom: 0.6em;
@@ -105,25 +100,39 @@ h1 {
   }
 
   li::marker {
-    color: var(--muted);
+    color: var(--accent);
   }
 }
 
 .next {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem 1rem;
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--rule);
-
-  span {
-    color: var(--muted);
-  }
+  margin-top: 3.5rem;
 
   a {
-    font-size: var(--step-2);
-    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    text-align: right;
   }
+
+  a:hover {
+    border-color: var(--accent);
+  }
+}
+
+.next-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.next-title {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 700;
 }

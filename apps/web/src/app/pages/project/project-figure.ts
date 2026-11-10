@@ -37,12 +37,6 @@ import { Diagram } from './diagram';
           <figcaption>{{ f.caption[lang()] }}</figcaption>
         </figure>
       }
-      @case ('code') {
-        <figure>
-          <pre><code>{{ f.code }}</code></pre>
-          <figcaption>{{ f.caption[lang()] }}</figcaption>
-        </figure>
-      }
     }
   `,
   styles: `
@@ -55,8 +49,8 @@ import { Diagram } from './diagram';
     }
     img {
       width: 100%;
-      border: 1px solid var(--rule);
-      border-radius: 3px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
     }
     .pair {
       display: grid;
@@ -72,16 +66,7 @@ import { Diagram } from './diagram';
       max-width: 40rem;
       margin-top: 0.75rem;
       color: var(--muted);
-      font-size: var(--step--1);
-    }
-    pre {
-      margin: 0;
-      padding: 1rem 1.25rem;
-      background: var(--surface);
-      border-radius: 3px;
-      overflow-x: auto;
-      line-height: 1.55;
-      color: var(--ink);
+      font-size: 0.875rem;
     }
   `,
 })

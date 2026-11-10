@@ -90,7 +90,7 @@ const PLAN = [
       list-style: none;
       margin: 0;
       padding: 1.25rem;
-      background: var(--surface);
+      background: var(--bg-alt);
       border-radius: 3px;
       display: flex;
       align-items: stretch;
@@ -103,13 +103,13 @@ const PLAN = [
       gap: 0.2rem;
       padding: 0.75rem 0.9rem;
       background: var(--bg);
-      border: 1px solid var(--rule);
+      border: 1px solid var(--border);
       border-radius: 3px;
-      font-size: var(--step--1);
+      font-size: 0.875rem;
     }
     .node strong {
-      color: var(--ink);
-      font-size: var(--step-0);
+      color: var(--heading);
+      font-size: 1rem;
     }
     .node span {
       color: var(--muted);
@@ -152,7 +152,7 @@ const PLAN = [
       display: grid;
       gap: 1.25rem;
       padding: 1.25rem;
-      background: var(--surface);
+      background: var(--bg-alt);
       border-radius: 3px;
     }
     .plan-row {
@@ -160,7 +160,7 @@ const PLAN = [
       gap: 0.35rem;
     }
     .plan-label {
-      color: var(--ink);
+      color: var(--heading);
       font-weight: 600;
     }
     .bar {
@@ -178,7 +178,7 @@ const PLAN = [
     }
     .plan-value {
       color: var(--muted);
-      font-size: var(--step--1);
+      font-size: 0.875rem;
       font-variant-numeric: tabular-nums;
     }
   `,

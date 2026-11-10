@@ -30,8 +30,7 @@
               }
             ],
             "styles": [
-              "@fontsource-variable/hanken-grotesk/index.css",
-              "@fontsource/jetbrains-mono/latin-400.css",
+              "@fontsource-variable/inter/index.css",
               "src/styles.scss"
             ],
             "server": "src/main.server.ts",

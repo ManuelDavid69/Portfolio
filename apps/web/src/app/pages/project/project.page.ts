@@ -5,10 +5,11 @@ import { SeoService } from '../../core/seo.service';
 import { PROJECTS, findProject } from '../../content/projects';
 import { NotFoundPage } from '../not-found/not-found.page';
 import { ProjectFigure } from './project-figure';
+import { Icon } from '../../layout/icon';
 
 @Component({
   selector: 'app-project-page',
-  imports: [RouterLink, ProjectFigure, NotFoundPage],
+  imports: [RouterLink, ProjectFigure, NotFoundPage, Icon],
   templateUrl: './project.page.html',
   styleUrl: './project.page.scss',
 })
