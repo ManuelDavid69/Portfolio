@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.angular/
+coverage/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+bin/
+obj/
+.terraform/
+*.tfstate
+*.tfstate.*
