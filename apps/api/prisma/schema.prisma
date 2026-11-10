@@ -1,0 +1,37 @@
+// Database of the portfolio API.
+// Table and column names are in snake_case because the C# functions read them with plain SQL.
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// A message sent from the contact form. The e-mail is sent by a C# function, which fills sent_at.
+model ContactMessage {
+  id        String    @id @default(uuid()) @db.Uuid
+  name      String    @db.VarChar(100)
+  email     String    @db.VarChar(200)
+  message   String
+  lang      String    @db.VarChar(2)
+  createdAt DateTime  @default(now()) @map("created_at")
+  sentAt    DateTime? @map("sent_at")
+
+  @@map("contact_messages")
+}
+
+/// GitHub data of a project repository, refreshed every night by a C# function.
+model RepoStats {
+  repo         String    @id @db.VarChar(100)
+  lastCommitAt DateTime? @map("last_commit_at")
+  languages    String[]
+  stars        Int       @default(0)
+  updatedAt    DateTime  @default(now()) @map("updated_at")
+
+  @@map("repo_stats")
+}

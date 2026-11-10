@@ -1,0 +1,21 @@
+# Local development: PostgreSQL and Azurite (Azure Storage emulator for the queue).
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: portfolio
+      POSTGRES_PASSWORD: portfolio
+      POSTGRES_DB: portfolio
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:3.35.0
+    command: azurite-queue --queueHost 0.0.0.0 --skipApiVersionCheck
+    ports:
+      - "10001:10001"
+
+volumes:
+  db-data:
