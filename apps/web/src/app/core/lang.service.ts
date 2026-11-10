@@ -27,6 +27,8 @@ export class LangService {
     return ui(this.lang(), key);
   }
 
+  readonly currentPath = computed(() => this.url().split(/[?#]/)[0]);
+
   /** The same page in the other language. */
   readonly otherLangUrl = computed(() => {
     const path = this.url().split(/[?#]/)[0];
