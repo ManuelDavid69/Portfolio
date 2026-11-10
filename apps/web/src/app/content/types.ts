@@ -17,7 +17,7 @@ export interface Picture {
 }
 
 /** Diagrams are drawn in HTML/SVG so they follow the page language and theme. */
-export type DiagramId = 'gmao-flow' | 'explain-plan' | 'iot-chain';
+export type DiagramId = 'gmao-flow' | 'gmao-loop' | 'explain-plan' | 'iot-chain';
 
 export type Figure =
   | { kind: 'picture'; picture: Picture }

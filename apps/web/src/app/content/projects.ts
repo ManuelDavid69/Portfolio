@@ -8,14 +8,6 @@ const img = (src: string, width: number, height: number, alt: Picture['alt'], ca
   caption,
 });
 
-const gmaoLog = img('/images/gmao-parc/gmao-log.webp', 1600, 501, {
-  en: 'Log of a run of the equipment update job',
-  fr: 'Journal d’une exécution du traitement de mise à jour des matériels',
-}, {
-  en: 'A real run of the equipment job. I removed the lines with server names and paths. You can see the query, one update per machine, the commit and the final count.',
-  fr: 'Une vraie exécution du traitement des matériels. J’ai retiré les lignes avec les noms de serveurs et les chemins. On voit la requête, une mise à jour par matériel, le commit et le bilan final.',
-});
-
 const digidelBefore = img('/images/digidel/digidel-sync-avant.webp', 1600, 665, {
   en: 'Before: the situation shows February 2026 and the planning is still on December 2021',
   fr: 'Avant : la situation affiche février 2026 et le planning est resté sur décembre 2021',
@@ -48,7 +40,6 @@ export const PROJECTS: Project[] = [
     team: { en: 'With my company tutor', fr: 'Avec ma tutrice en entreprise' },
     stack: ['Java', 'JDBC', 'PostgreSQL', 'REST API', 'Maven', 'Log4j', 'Azure DevOps'],
     links: [],
-    thumbnail: gmaoLog,
     sections: [
       {
         title: { en: 'Context', fr: 'Contexte' },
@@ -93,7 +84,6 @@ export const PROJECTS: Project[] = [
             fr: 'Une livraison en Fat JAR avec Maven. Le code est sur Azure DevOps et les traitements ont été testés sur les serveurs de préproduction.',
           },
         ],
-        figures: [{ kind: 'picture', picture: gmaoLog }],
       },
       {
         title: { en: 'The bug that taught me the most', fr: 'Le bug qui m’a le plus appris' },
@@ -105,6 +95,13 @@ export const PROJECTS: Project[] = [
           {
             en: 'The fix was to always read the first page again until the API returns nothing. The list gets smaller as the job works.',
             fr: 'La solution a été de toujours relire la première page jusqu’à ce que l’API ne renvoie plus rien. La liste se vide au fur et à mesure.',
+          },
+        ],
+        figures: [
+          {
+            kind: 'diagram',
+            id: 'gmao-loop',
+            caption: { en: 'How the people job works after the fix.', fr: 'Le fonctionnement du traitement des acteurs après la correction.' },
           },
         ],
       },

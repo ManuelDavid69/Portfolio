@@ -16,6 +16,8 @@ interface Link {
 interface Chain {
   nodes: Node[];
   links: Link[];
+  /** Shown under the chain when the last step goes back to an earlier one. */
+  loop?: L;
 }
 
 const CHAINS: Partial<Record<DiagramId, Chain>> = {
@@ -29,6 +31,21 @@ const CHAINS: Partial<Record<DiagramId, Chain>> = {
       { label: { en: 'People job: deactivates leavers', fr: 'Traitement acteurs : désactive les sortants' } },
       { label: { en: 'Equipment job: fixes cost centres', fr: 'Traitement matériels : corrige les codes analytiques' }, both: true },
     ],
+  },
+  'gmao-loop': {
+    nodes: [
+      { title: { en: 'Get a token', fr: 'Obtenir un jeton' }, note: { en: 'Login to the CARL Source API', fr: 'Connexion à l’API CARL Source' } },
+      { title: { en: 'Read the first page', fr: 'Lire la première page' }, note: { en: 'People whose contract has ended', fr: 'Personnes dont le contrat est terminé' }, mine: true },
+      { title: { en: 'Deactivate them', fr: 'Les désactiver' }, note: { en: 'They leave the list', fr: 'Elles sortent de la liste' } },
+    ],
+    links: [
+      { label: { en: '', fr: '' } },
+      { label: { en: '', fr: '' } },
+    ],
+    loop: {
+      en: 'Back to the first page until it is empty, then an e-mail report is sent.',
+      fr: 'Retour à la première page jusqu’à ce qu’elle soit vide, puis un mail de compte rendu est envoyé.',
+    },
   },
   'iot-chain': {
     nodes: [
@@ -71,6 +88,9 @@ const PLAN = [
           }
         }
       </ol>
+      @if (c.loop) {
+        <p class="loop"><span aria-hidden="true">↺</span> {{ c.loop[lang()] }}</p>
+      }
     } @else if (id() === 'explain-plan') {
       <div class="plan">
         @for (row of plan; track $index) {
@@ -137,6 +157,10 @@ const PLAN = [
       .chain {
         flex-direction: column;
       }
+      .node,
+      .link {
+        flex: none;
+      }
       .link {
         flex-direction: row;
         gap: 0.6rem;
@@ -147,6 +171,15 @@ const PLAN = [
       .arrow {
         transform: rotate(90deg);
       }
+    }
+    .loop {
+      margin: 0.75rem 0 0;
+      font-size: 0.925rem;
+      color: var(--text);
+    }
+    .loop span {
+      color: var(--accent);
+      font-weight: 700;
     }
     .plan {
       display: grid;
