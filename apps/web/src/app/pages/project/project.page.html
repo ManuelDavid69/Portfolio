@@ -1,0 +1,51 @@
+@if (project(); as p) {
+  <article class="wrap">
+    <header class="head">
+      <a class="back" [routerLink]="home()" fragment="projects">{{ i18n.t('backToProjects') }}</a>
+      <h1>{{ p.title }}</h1>
+      <p class="tagline">{{ p.tagline[lang()] }}</p>
+
+      <dl class="meta">
+        <div><dt>{{ i18n.t('metaContext') }}</dt><dd>{{ p.context[lang()] }}</dd></div>
+        <div><dt>{{ i18n.t('metaPeriod') }}</dt><dd>{{ p.period[lang()] }}</dd></div>
+        <div><dt>{{ i18n.t('metaRole') }}</dt><dd>{{ p.role[lang()] }}</dd></div>
+        <div><dt>{{ i18n.t('metaTeam') }}</dt><dd>{{ p.team[lang()] }}</dd></div>
+        <div class="wide"><dt>{{ i18n.t('metaStack') }}</dt><dd>{{ p.stack.join(', ') }}</dd></div>
+      </dl>
+
+      @if (p.links.length) {
+        <ul class="links">
+          @for (link of p.links; track link.url) {
+            <li><a [href]="link.url">{{ link.label[lang()] }}</a></li>
+          }
+        </ul>
+      }
+    </header>
+
+    @for (section of p.sections; track $index) {
+      <section class="section">
+        <h2>{{ section.title[lang()] }}</h2>
+        @for (paragraph of section.paragraphs ?? []; track $index) {
+          <p>{{ paragraph[lang()] }}</p>
+        }
+        @if (section.bullets) {
+          <ul class="bullets">
+            @for (bullet of section.bullets; track $index) {
+              <li>{{ bullet[lang()] }}</li>
+            }
+          </ul>
+        }
+        @for (figure of section.figures ?? []; track $index) {
+          <app-project-figure [figure]="figure" [lang]="lang()" />
+        }
+      </section>
+    }
+
+    <nav class="next" [attr.aria-label]="i18n.t('nextProject')">
+      <span>{{ i18n.t('nextProject') }}</span>
+      <a [routerLink]="next().url">{{ next().title }}</a>
+    </nav>
+  </article>
+} @else {
+  <app-not-found-page />
+}

@@ -1,0 +1,115 @@
+<section class="wrap hero" aria-labelledby="hero-name">
+  <h1 id="hero-name">{{ profile.name }}</h1>
+  <p class="intro">{{ intro[lang()] }}</p>
+  <p class="available"><span class="dot" aria-hidden="true"></span>{{ i18n.t('available') }}</p>
+  <ul class="hero-links">
+    <li><a [href]="'mailto:' + profile.email">{{ profile.email }}</a></li>
+    <li><a [href]="profile.linkedin" rel="me">LinkedIn</a></li>
+    <li><a [href]="profile.github" rel="me">GitHub</a></li>
+    <li>
+      @if (cvUrl()) {
+        <a [href]="cvUrl()" download>{{ i18n.t('downloadCv') }}</a>
+      } @else {
+        <span class="muted">{{ i18n.t('cvSoon') }}</span>
+      }
+    </li>
+  </ul>
+</section>
+
+<section class="wrap block" id="projects" aria-labelledby="projects-title">
+  <div class="label">
+    <h2 id="projects-title">{{ i18n.t('projectsTitle') }}</h2>
+    <p class="note">{{ i18n.t('projectsIntro') }}</p>
+  </div>
+  <div class="body">
+    @for (group of groups; track group.id) {
+      <h3 class="group">{{ i18n.t(group.label) }}</h3>
+      <ul class="projects">
+        @for (p of group.projects; track p.slug) {
+          <li>
+            <a class="project" [routerLink]="projectUrl(lang(), p.slug)">
+              @if (p.thumbnail) {
+                <img class="thumb" [src]="p.thumbnail.src" [alt]="''" width="320" height="200" loading="lazy" decoding="async" />
+              } @else {
+                <span class="thumb text-thumb" aria-hidden="true">{{ p.title }}</span>
+              }
+              <span class="info">
+                <span class="title">{{ p.title }}</span>
+                <span class="tagline">{{ p.tagline[lang()] }}</span>
+                <span class="stack">{{ p.stack.slice(0, 5).join(', ') }}</span>
+              </span>
+              <span class="year">{{ p.year }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</section>
+
+<section class="wrap block" id="journey" aria-labelledby="journey-title">
+  <div class="label">
+    <h2 id="journey-title">{{ i18n.t('journeyTitle') }}</h2>
+  </div>
+  <ol class="body journey">
+    @for (step of journey; track $index) {
+      <li [class.upcoming]="step.upcoming">
+        <span class="when">{{ step.when[lang()] }}</span>
+        <div>
+          <p class="what">{{ step.what[lang()] }}</p>
+          <p class="where">{{ step.where[lang()] }}</p>
+          @if (step.detail) {
+            <p class="detail">{{ step.detail[lang()] }}</p>
+          }
+        </div>
+      </li>
+    }
+  </ol>
+</section>
+
+<section class="wrap block" id="skills" aria-labelledby="skills-title">
+  <div class="label">
+    <h2 id="skills-title">{{ i18n.t('skillsTitle') }}</h2>
+  </div>
+  <dl class="body skills">
+    @for (group of skills; track $index) {
+      <div>
+        <dt>{{ group.name[lang()] }}</dt>
+        <dd>{{ group.items.join(', ') }}</dd>
+      </div>
+    }
+    <div>
+      <dt>{{ i18n.t('skillsSpoken') }}</dt>
+      <dd>{{ spoken[lang()] }}</dd>
+    </div>
+  </dl>
+</section>
+
+<section class="wrap block" id="about" aria-labelledby="about-title">
+  <div class="label">
+    <h2 id="about-title">{{ i18n.t('aboutTitle') }}</h2>
+  </div>
+  <div class="body about">
+    @if (profile.photo) {
+      <img class="photo" [src]="profile.photo" [alt]="profile.name" width="240" height="300" />
+    } @else {
+      <div class="photo placeholder">{{ i18n.t('photoMissing') }}</div>
+    }
+    <div class="prose">
+      @for (paragraph of about; track $index) {
+        <p>{{ paragraph[lang()] }}</p>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="wrap block" id="contact" aria-labelledby="contact-title">
+  <div class="label">
+    <h2 id="contact-title">{{ i18n.t('contactTitle') }}</h2>
+  </div>
+  <div class="body contact">
+    <p>{{ i18n.t('contactIntro') }}</p>
+    <p class="mail"><a [href]="'mailto:' + profile.email">{{ profile.email }}</a></p>
+    <app-contact-form />
+  </div>
+</section>
