@@ -42,6 +42,28 @@ jobs:
       # Testcontainers starts a real PostgreSQL in Docker, which is available on GitHub runners.
       - run: npm run test:e2e
 
+  # On main, the API image is published on GitHub Packages. Azure pulls it from there.
+  api-image:
+    name: Image Docker de l'API
+    if: github.ref == 'refs/heads/main'
+    needs: api
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/login-action@v4
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v7
+        with:
+          context: apps/api
+          push: true
+          tags: ghcr.io/manueldavid69/portfolio-api:${{ github.sha }},ghcr.io/manueldavid69/portfolio-api:latest
+
   functions:
     name: Fonctions C#
     runs-on: ubuntu-latest

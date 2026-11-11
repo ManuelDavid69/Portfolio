@@ -198,6 +198,11 @@ resource "azurerm_container_app" "api" {
     }
   }
 
+  # After the first apply, the deploy workflow sets the image of each release. Terraform must not undo it.
+  lifecycle {
+    ignore_changes = [template[0].container[0].image]
+  }
+
   ingress {
     external_enabled = true
     target_port      = 3000
