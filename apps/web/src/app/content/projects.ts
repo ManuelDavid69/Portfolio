@@ -495,6 +495,16 @@ export const PROJECTS: Project[] = [
             caption: { en: 'The path of the data.', fr: 'Le trajet des données.' },
           },
           { kind: 'picture', picture: iotGrafana },
+          {
+            kind: 'picture',
+            picture: img('/images/iot/android.webp', 540, 930, {
+              en: 'Android app showing the latest sensor values and the display order TLHP',
+              fr: 'Application Android avec les dernières valeurs du capteur et l’ordre d’affichage TLHP',
+            }, {
+              en: 'The Android app asks for the latest values and sends the display order TLHP. For this screenshot a small script played the server and sent back the last measure recorded in May.',
+              fr: 'L’application Android demande les dernières valeurs et envoie l’ordre d’affichage TLHP. Pour cette capture, un petit script jouait le rôle du serveur et renvoyait la dernière mesure enregistrée en mai.',
+            }),
+          },
         ],
       },
       {

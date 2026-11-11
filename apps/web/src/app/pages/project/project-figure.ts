@@ -9,7 +9,7 @@ import { Diagram } from './diagram';
     @let f = figure();
     @switch (f.kind) {
       @case ('picture') {
-        <figure>
+        <figure [class.portrait]="f.picture.height > f.picture.width">
           <a [href]="f.picture.src" class="zoom">
             <img [src]="f.picture.src" [alt]="f.picture.alt[lang()]" [width]="f.picture.width" [height]="f.picture.height"
                  loading="lazy" decoding="async" />
@@ -42,6 +42,10 @@ import { Diagram } from './diagram';
   styles: `
     figure {
       margin: 2rem 0 2.5rem;
+    }
+    /* Phone screenshots stay at a phone-like size. */
+    .portrait .zoom {
+      max-width: 300px;
     }
     .zoom {
       display: block;
