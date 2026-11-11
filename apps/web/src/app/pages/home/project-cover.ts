@@ -12,21 +12,18 @@ import { Lang, ProjectCover as CoverId } from '../../content/types';
     <svg viewBox="0 0 120 120" aria-hidden="true" class="art">
       @switch (id()) {
         @case ('gmao') {
-          <!-- Maintenance: two gears -->
-          <g transform="translate(52 56)">
-            @for (a of teeth; track a) {
-              <rect x="-6" y="-44" width="12" height="16" rx="3" class="strong" [attr.transform]="'rotate(' + a + ')'" />
-            }
-            <circle r="32" class="strong" />
-            <circle r="13" class="bg" />
-          </g>
-          <g transform="translate(94 92)">
-            @for (a of smallTeeth; track a) {
-              <rect x="-4" y="-25" width="8" height="10" rx="2" class="light" [attr.transform]="'rotate(' + a + ')'" />
-            }
-            <circle r="18" class="light" />
-            <circle r="7" class="bg" />
-          </g>
+          <!-- Fleet: a maintenance truck with its warning light, on the road -->
+          <rect x="79" y="45" width="12" height="7" rx="3" class="lit" />
+          <rect x="10" y="40" width="64" height="44" rx="4" class="strong" />
+          <rect x="18" y="48" width="48" height="6" rx="3" class="bg" />
+          <path d="M74 52h20l14 18v14H74z" class="light" />
+          <path d="M80 58h12l9 12H80z" class="bg" />
+          <circle cx="30" cy="88" r="11" class="dark" /><circle cx="30" cy="88" r="4.5" class="bg" />
+          <circle cx="90" cy="88" r="11" class="dark" /><circle cx="90" cy="88" r="4.5" class="bg" />
+          <rect x="4" y="104" width="112" height="4" rx="2" class="strong" />
+          <rect x="16" y="112" width="18" height="3" rx="1.5" class="light" />
+          <rect x="52" y="112" width="18" height="3" rx="1.5" class="light" />
+          <rect x="88" y="112" width="18" height="3" rx="1.5" class="light" />
         }
         @case ('casa') {
           <!-- Housing: two buildings with windows, some lit -->
@@ -90,14 +87,15 @@ import { Lang, ProjectCover as CoverId } from '../../content/types';
     .lit {
       fill: #fbbf24;
     }
+    .dark {
+      fill: var(--heading);
+    }
   `,
 })
 export class ProjectCover {
   readonly id = input.required<CoverId>();
   readonly lang = input.required<Lang>();
 
-  readonly teeth = [0, 45, 90, 135, 180, 225, 270, 315];
-  readonly smallTeeth = [0, 60, 120, 180, 240, 300];
 
   /** Windows of the big building: x, y and whether the light is on. */
   readonly windows: [number, number, boolean][] = [

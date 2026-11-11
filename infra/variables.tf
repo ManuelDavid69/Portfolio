@@ -62,8 +62,9 @@ variable "smtp" {
   })
 }
 
-variable "github_repo" {
-  description = "Repository allowed to deploy, as owner/name."
+
+variable "github_oidc_repo" {
+  description = "How GitHub names the repository in its OpenID Connect tokens: owner and repo with their numeric ids."
   type        = string
-  default     = "ManuelDavid69/Portfolio"
+  default     = "ManuelDavid69@270627385/Portfolio@1453255794"
 }
