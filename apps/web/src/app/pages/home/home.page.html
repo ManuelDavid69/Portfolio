@@ -58,6 +58,8 @@
             <a class="card-media" [routerLink]="projectUrl(lang(), p.slug)" tabindex="-1" aria-hidden="true">
               @if (p.thumbnail) {
                 <img [src]="p.thumbnail.src" alt="" width="640" height="360" loading="lazy" decoding="async" />
+              } @else if (p.cover) {
+                <app-project-cover [id]="p.cover" [lang]="lang()" />
               } @else {
                 <span class="media-placeholder">
                   <app-icon [name]="group.icon" />
@@ -170,10 +172,7 @@
       <ul class="contact-list">
         <li>
           <app-icon name="mail" />
-          <span class="mail-line">
-            <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
-            <button type="button" class="copy" (click)="copyEmail()">{{ copied() ? i18n.t('copied') : i18n.t('copyEmail') }}</button>
-          </span>
+          <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
         </li>
         <li>
           <app-icon name="linkedin" />

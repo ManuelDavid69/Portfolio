@@ -21,8 +21,8 @@ export const INTERNSHIP: L = {
 };
 
 export const INTRO: L = {
-  en: 'I am in my 4th year at CPE Lyon in computer science and networks. I do it as a work-study at AREA, part of the APRR motorway group. In the software department I work on the company’s business applications, mostly on the back end and the databases.',
-  fr: 'Je suis en 4e année à CPE Lyon en informatique et réseaux. Je la fais en alternance chez AREA, une société du groupe autoroutier APRR. Au département logiciel je travaille sur les applications métier de l’entreprise, surtout sur le back-end et les bases de données.',
+  en: 'I am in my 4th year at CPE Lyon in computer science and networks. I do it as a work-study at AREA, part of the APRR motorway group. In the software department I work on the company’s business applications, from the interface down to the database.',
+  fr: 'Je suis en 4e année à CPE Lyon en informatique et réseaux. Je la fais en alternance chez AREA, une société du groupe autoroutier APRR. Au département logiciel je travaille sur les applications métier de l’entreprise, de l’interface jusqu’à la base de données.',
 };
 
 export const ABOUT: L[] = [
@@ -122,7 +122,7 @@ export interface SkillGroup {
 export const SKILLS: SkillGroup[] = [
   {
     name: { en: 'Languages', fr: 'Langages' },
-    items: ['Java', 'Python', 'C', 'C++', 'C#', 'JavaScript', 'TypeScript', 'PHP', 'Go', 'SQL', 'Bash', 'PowerShell'],
+    items: ['Java', 'Python', 'C', 'C++', 'C#', 'JavaScript', 'TypeScript', 'PHP', 'Go', 'SQL', 'Bash', 'PowerShell', { en: 'Assembly', fr: 'Assembleur' }],
   },
   {
     name: { en: 'Back end', fr: 'Back-end' },
@@ -138,11 +138,11 @@ export const SKILLS: SkillGroup[] = [
   },
   {
     name: { en: 'DevOps and cloud', fr: 'DevOps et cloud' },
-    items: ['Git', 'GitHub Actions', 'GitLab', 'Azure DevOps', 'CI/CD', 'Docker', 'Kubernetes', 'Terraform', 'Ansible', 'Azure', 'AWS', 'Prometheus'],
+    items: ['Git', 'GitHub Actions', 'GitLab', 'Azure DevOps', 'CI/CD', 'Docker', 'Kubernetes', 'Terraform', 'Ansible', 'ArgoCD', 'Azure', 'AWS (IAM, VPC)', 'Prometheus', 'Alertmanager', 'Vercel'],
   },
   {
     name: { en: 'Systems', fr: 'Systèmes' },
-    items: ['Linux (Ubuntu, Debian)', 'Active Directory', 'Proxmox', 'Hyper-V'],
+    items: ['Linux (Ubuntu, Debian)', 'Unix', 'Windows (NTFS, ACL)', 'Active Directory', 'Syslog', 'Proxmox', 'Hyper-V'],
   },
   {
     name: { en: 'Networks', fr: 'Réseaux' },
@@ -150,15 +150,15 @@ export const SKILLS: SkillGroup[] = [
   },
   {
     name: { en: 'Security', fr: 'Sécurité' },
-    items: ['OWASP Top 10', 'OAuth2 / OpenID Connect', 'JWT', 'MFA', 'TLS', 'Burp Suite', 'Nmap', 'Nessus', 'OpenVAS', 'SQLi / XSS', { en: 'GDPR', fr: 'RGPD' }],
+    items: ['OWASP Top 10', 'OAuth2 / OpenID Connect', 'JWT', 'MFA', 'TLS', 'Burp Suite', 'Nmap', 'Nessus', 'OpenVAS', 'SQLi / XSS', 'Buffer overflow', 'DAST', 'PTES', 'OSINT', 'Shodan', 'Firewall', { en: 'GDPR', fr: 'RGPD' }],
   },
   {
     name: { en: 'IoT and embedded', fr: 'IoT et embarqué' },
-    items: ['micro:bit', 'ESP32', 'STM32', 'PIC16F', 'MQTT', 'LoRaWAN', 'Zigbee', 'Bluetooth', 'MPLAB', 'Keil µVision'],
+    items: ['micro:bit', 'ESP32', 'STM32', 'PIC16F', 'nRF', 'MQTT', 'LoRaWAN', 'Zigbee', '802.15.4', 'Bluetooth', 'The Things Network', 'MPLAB', 'Keil µVision'],
   },
   {
     name: { en: 'Methods and tools', fr: 'Méthodes et outils' },
-    items: ['Scrum', { en: 'V-model', fr: 'Cycle en V' }, 'Gantt', 'MVC', 'SonarQube', 'Postman', 'Figma', 'IntelliJ IDEA', 'VS Code', 'DBeaver', 'Android Studio'],
+    items: ['Scrum', { en: 'Agile', fr: 'Agilité' }, { en: 'V-model', fr: 'Cycle en V' }, 'Gantt', { en: 'Project management', fr: 'Gestion de projet' }, 'MVC', 'SonarQube', 'Postman', 'Figma', 'IntelliJ IDEA', 'VS Code', 'DBeaver', 'Android Studio', 'Talend', 'MATLAB'],
   },
 ];
 

@@ -8,6 +8,9 @@ export interface L {
 
 export type ProjectGroup = 'work' | 'personal' | 'school';
 
+/** Drawn cover for a project without screenshots. */
+export type ProjectCover = 'gmao' | 'casa';
+
 export interface Picture {
   src: string;
   width: number;
@@ -50,5 +53,6 @@ export interface Project {
   links: ProjectLink[];
   /** Shown in the project list. Projects without one get a plain text tile. */
   thumbnail?: Picture;
+  cover?: ProjectCover;
   sections: Section[];
 }

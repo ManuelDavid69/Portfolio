@@ -61,6 +61,7 @@ export const PROJECTS: Project[] = [
     team: { en: 'With my company tutor', fr: 'Avec ma tutrice en entreprise' },
     stack: ['Java', 'JDBC', 'PostgreSQL', 'REST API', 'Maven', 'Log4j', 'Azure DevOps'],
     links: [],
+    cover: 'gmao',
     sections: [
       {
         title: { en: 'Context', fr: 'Contexte' },
@@ -152,6 +153,7 @@ export const PROJECTS: Project[] = [
     team: { en: 'With a developer of the team', fr: 'Avec un développeur de l’équipe' },
     stack: ['PHP', 'PostgreSQL', 'SQL', 'JavaScript', 'AJAX'],
     links: [],
+    cover: 'casa',
     sections: [
       {
         title: { en: 'Context', fr: 'Contexte' },
