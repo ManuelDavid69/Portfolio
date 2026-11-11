@@ -48,7 +48,7 @@ jobs:
       - name: Open the database to this runner
         run: |
           RUNNER_IP=$(curl -s https://api.ipify.org)
-          az postgres flexible-server firewall-rule create -g $RESOURCE_GROUP -n psql-davidmanuel --rule-name github-runner --start-ip-address $RUNNER_IP --end-ip-address $RUNNER_IP
+          az postgres flexible-server firewall-rule create -g $RESOURCE_GROUP --server-name psql-davidmanuel --name github-runner --start-ip-address $RUNNER_IP --end-ip-address $RUNNER_IP
 
       - uses: actions/setup-node@v7
         with:
@@ -61,7 +61,7 @@ jobs:
 
       - name: Close the database again
         if: always()
-        run: az postgres flexible-server firewall-rule delete -g $RESOURCE_GROUP -n psql-davidmanuel --rule-name github-runner --yes
+        run: az postgres flexible-server firewall-rule delete -g $RESOURCE_GROUP --server-name psql-davidmanuel --name github-runner --yes
 
       - name: New revision of the Container App
         run: az containerapp update -g $RESOURCE_GROUP -n $API_APP --image $IMAGE-api:${{ github.sha }}
