@@ -1,7 +1,7 @@
 # Azure infrastructure of davidmanuel.fr
 #
-#   Static Web App       -> Angular site (static HTML)
-#   Container App        -> NestJS API (scales to zero when nobody uses it)
+#   Container App (web)  -> Angular site (static HTML served by nginx)
+#   Container App (api)  -> NestJS API (scales to zero when nobody uses it)
 #   PostgreSQL Flexible  -> database shared by the API and the functions
 #   Function App (Flex)  -> C# functions: contact e-mail and nightly GitHub sync
 #   Storage account      -> queue between the API and the e-mail function
@@ -261,11 +261,38 @@ resource "azurerm_function_app_flex_consumption" "main" {
 
 # ------------------------------------------------------------------- website
 
-resource "azurerm_static_web_app" "site" {
-  name                = "stapp-${local.name}"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = var.static_web_app_location
-  sku_tier            = "Free"
-  sku_size            = "Free"
-  tags                = local.tags
+# Azure Static Web Apps does not exist in the regions allowed by my student subscription,
+# so the static pages are served by a small nginx container in the same environment as the API.
+# One replica always on: a recruiter must never wait for a cold start on the home page.
+resource "azurerm_container_app" "web" {
+  name                         = "ca-${local.name}-web"
+  resource_group_name          = azurerm_resource_group.main.name
+  container_app_environment_id = azurerm_container_app_environment.main.id
+  revision_mode                = "Single"
+  tags                         = local.tags
+
+  template {
+    min_replicas = 1
+    max_replicas = 2
+
+    container {
+      name   = "web"
+      image  = var.web_image
+      cpu    = 0.25
+      memory = "0.5Gi"
+    }
+  }
+
+  lifecycle {
+    ignore_changes = [template[0].container[0].image]
+  }
+
+  ingress {
+    external_enabled = true
+    target_port      = 8080
+    traffic_weight {
+      latest_revision = true
+      percentage      = 100
+    }
+  }
 }

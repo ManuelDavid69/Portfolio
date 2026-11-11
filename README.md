@@ -17,7 +17,7 @@ Je suis apprenti ingénieur en informatique à CPE Lyon et je cherche un stage �
 ## Comment ça marche
 
 ```
-Visiteur ──> Site statique (Azure Static Web Apps)
+Visiteur ──> Site statique (nginx sur Azure Container Apps)
                 │
                 │ formulaire de contact
                 v

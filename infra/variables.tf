@@ -4,15 +4,9 @@ variable "subscription_id" {
 }
 
 variable "location" {
-  description = "Region of the resources. France Central is the closest to me."
+  description = "Region of the resources. My student subscription only allows a few regions, Germany West Central is one of them."
   type        = string
-  default     = "francecentral"
-}
-
-variable "static_web_app_location" {
-  description = "Static Web Apps only exist in a few regions. The content is served worldwide anyway."
-  type        = string
-  default     = "westeurope"
+  default     = "germanywestcentral"
 }
 
 variable "suffix" {
@@ -35,6 +29,12 @@ variable "api_image" {
   description = "Docker image of the API, pushed by the GitHub Actions workflow."
   type        = string
   default     = "ghcr.io/manueldavid69/portfolio-api:latest"
+}
+
+variable "web_image" {
+  description = "Docker image of the website (nginx with the prerendered pages)."
+  type        = string
+  default     = "ghcr.io/manueldavid69/portfolio-web:latest"
 }
 
 variable "github_repos" {
