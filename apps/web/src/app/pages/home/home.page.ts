@@ -36,10 +36,6 @@ export class HomePage {
 
   readonly lang = this.i18n.lang;
   readonly cvUrl = computed(() => PROFILE.cv[this.lang()]);
-  readonly initials = PROFILE.name
-    .split(' ')
-    .map((part) => part[0])
-    .join('');
 
   readonly groups = GROUPS.map((g) => ({
     ...g,

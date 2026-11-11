@@ -1,6 +1,6 @@
 <!-- Hero -->
 <section class="hero">
-  <div class="container hero-grid">
+  <div class="container">
     <div class="hero-text">
       <p class="badge"><span class="dot" aria-hidden="true"></span>{{ internship[lang()] }}</p>
       <h1>{{ i18n.t('hello') }} {{ profile.name }}</h1>
@@ -21,14 +21,6 @@
         <li><a [href]="profile.github" rel="me" aria-label="GitHub"><app-icon name="github" /></a></li>
         <li><a [href]="'mailto:' + profile.email" aria-label="E-mail"><app-icon name="mail" /></a></li>
       </ul>
-    </div>
-
-    <div class="hero-photo">
-      @if (profile.photo) {
-        <img [src]="profile.photo" [alt]="profile.name" width="320" height="320" />
-      } @else {
-        <span class="initials" aria-hidden="true">{{ initials }}</span>
-      }
     </div>
   </div>
 </section>

@@ -8,8 +8,6 @@ export const PROFILE = {
   github: 'https://github.com/ManuelDavid69',
   /** Path of the PDF once the new CV is ready, e.g. '/cv/manuel-david-cv-en.pdf'. */
   cv: { en: '', fr: '' } as L,
-  /** Path of the photo once Manuel sends it. */
-  photo: '',
 };
 
 export const ROLE: L = {
