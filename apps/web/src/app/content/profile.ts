@@ -21,8 +21,8 @@ export const INTERNSHIP: L = {
 };
 
 export const INTRO: L = {
-  en: 'I am in my 4th year at CPE Lyon in computer science and networks. I do it as a work-study at AREA, part of the APRR motorway group. In the software department I work on the company’s business applications. I like understanding what a team needs and turning it into a tool they can rely on.',
-  fr: 'Je suis en 4e année à CPE Lyon en informatique et réseaux. Je la fais en alternance chez AREA, une société du groupe autoroutier APRR. Au département logiciel je travaille sur les applications métier de l’entreprise. J’aime comprendre le besoin d’une équipe et en faire un outil sur lequel elle peut compter.',
+  en: 'I am in my 4th year at CPE Lyon in computer science and networks. I do it as a work-study at AREA, part of the APRR motorway group. In the software department I work on the company’s business applications, mostly on the back end and the databases.',
+  fr: 'Je suis en 4e année à CPE Lyon en informatique et réseaux. Je la fais en alternance chez AREA, une société du groupe autoroutier APRR. Au département logiciel je travaille sur les applications métier de l’entreprise, surtout sur le back-end et les bases de données.',
 };
 
 export const ABOUT: L[] = [
@@ -115,17 +115,51 @@ export const JOURNEY: Step[] = [
 
 export interface SkillGroup {
   name: L;
-  items: string[];
+  /** Most names are the same in both languages, the others are translated. */
+  items: (string | L)[];
 }
 
 export const SKILLS: SkillGroup[] = [
-  { name: { en: 'Languages', fr: 'Langages' }, items: ['Java', 'Python', 'TypeScript', 'JavaScript', 'PHP', 'Go', 'C', 'C++', 'C#', 'SQL'] },
-  { name: { en: 'Back end', fr: 'Back-end' }, items: ['Spring Boot', 'FastAPI', 'Flask', 'NestJS', 'REST API', 'GraphQL', 'OAuth2', 'JWT'] },
-  { name: { en: 'Front end and mobile', fr: 'Front-end et mobile' }, items: ['Angular', 'Vue.js', 'React', 'Next.js', 'React Native', 'Android', 'HTML / CSS'] },
-  { name: { en: 'Databases', fr: 'Bases de données' }, items: ['PostgreSQL', 'MySQL', 'SQLite', 'MongoDB', 'Redis'] },
-  { name: { en: 'DevOps and cloud', fr: 'DevOps et cloud' }, items: ['Git', 'Docker', 'GitHub Actions', 'Azure DevOps', 'Azure', 'Terraform', 'Linux'] },
-  { name: { en: 'Networks and security', fr: 'Réseaux et sécurité' }, items: ['TCP/IP', 'VLAN', 'OSPF', 'BGP', 'Cisco', 'SSH', 'OWASP', 'Burp Suite', 'Nmap'] },
-  { name: { en: 'Methods and tools', fr: 'Méthodes et outils' }, items: ['Scrum', 'V-model', 'Postman', 'SonarQube', 'IntelliJ IDEA', 'VS Code', 'DBeaver'] },
+  {
+    name: { en: 'Languages', fr: 'Langages' },
+    items: ['Java', 'Python', 'C', 'C++', 'C#', 'JavaScript', 'TypeScript', 'PHP', 'Go', 'SQL', 'Bash', 'PowerShell'],
+  },
+  {
+    name: { en: 'Back end', fr: 'Back-end' },
+    items: ['Spring Boot', 'JPA / Hibernate', 'NestJS', 'FastAPI', 'Flask', 'REST API', 'GraphQL', 'OpenAPI / Swagger', 'Maven', 'Gradle'],
+  },
+  {
+    name: { en: 'Front end and mobile', fr: 'Front-end et mobile' },
+    items: ['Angular', 'Vue.js', 'React', 'Next.js', 'Tailwind CSS', 'HTML / CSS', 'Twig', 'React Native (Expo)', 'Android'],
+  },
+  {
+    name: { en: 'Data and AI', fr: 'Données et IA' },
+    items: ['PostgreSQL', 'MySQL', 'SQLite', 'MongoDB', 'Redis', 'InfluxDB', 'Prisma', 'SQLAlchemy', 'Grafana', 'scikit-learn', 'Machine learning'],
+  },
+  {
+    name: { en: 'DevOps and cloud', fr: 'DevOps et cloud' },
+    items: ['Git', 'GitHub Actions', 'GitLab', 'Azure DevOps', 'CI/CD', 'Docker', 'Kubernetes', 'Terraform', 'Ansible', 'Azure', 'AWS', 'Prometheus'],
+  },
+  {
+    name: { en: 'Systems', fr: 'Systèmes' },
+    items: ['Linux (Ubuntu, Debian)', 'Active Directory', 'Proxmox', 'Hyper-V'],
+  },
+  {
+    name: { en: 'Networks', fr: 'Réseaux' },
+    items: ['TCP/IP', 'IPv6', 'VLAN', 'VLSM', 'OSPF', 'BGP', 'RIP', 'ACL', 'IPsec', 'Cisco', 'GNS3', 'Packet Tracer'],
+  },
+  {
+    name: { en: 'Security', fr: 'Sécurité' },
+    items: ['OWASP Top 10', 'OAuth2 / OpenID Connect', 'JWT', 'MFA', 'TLS', 'Burp Suite', 'Nmap', 'Nessus', 'OpenVAS', 'SQLi / XSS', { en: 'GDPR', fr: 'RGPD' }],
+  },
+  {
+    name: { en: 'IoT and embedded', fr: 'IoT et embarqué' },
+    items: ['micro:bit', 'ESP32', 'STM32', 'PIC16F', 'MQTT', 'LoRaWAN', 'Zigbee', 'Bluetooth', 'MPLAB', 'Keil µVision'],
+  },
+  {
+    name: { en: 'Methods and tools', fr: 'Méthodes et outils' },
+    items: ['Scrum', { en: 'V-model', fr: 'Cycle en V' }, 'Gantt', 'MVC', 'SonarQube', 'Postman', 'Figma', 'IntelliJ IDEA', 'VS Code', 'DBeaver', 'Android Studio'],
+  },
 ];
 
 export const SPOKEN: L = {

@@ -1,10 +1,10 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LangService, projectUrl } from '../../core/lang.service';
 import { SeoService } from '../../core/seo.service';
 import { ABOUT, INTERNSHIP, INTRO, JOURNEY, PROFILE, ROLE, SKILLS, SPOKEN } from '../../content/profile';
 import { PROJECTS } from '../../content/projects';
-import { ProjectGroup } from '../../content/types';
+import { L, ProjectGroup } from '../../content/types';
 import { UiKey } from '../../content/ui';
 import { Icon, IconName } from '../../layout/icon';
 import { ContactForm } from './contact-form';
@@ -43,6 +43,23 @@ export class HomePage {
   }));
 
   readonly projectUrl = projectUrl;
+
+  readonly copied = signal(false);
+
+  /** For visitors without a mail app: the mailto link does nothing for them. */
+  async copyEmail() {
+    try {
+      await navigator.clipboard.writeText(PROFILE.email);
+      this.copied.set(true);
+      setTimeout(() => this.copied.set(false), 2000);
+    } catch {
+      // Clipboard blocked: the address stays visible on the page anyway.
+    }
+  }
+
+  label(item: string | L) {
+    return typeof item === 'string' ? item : item[this.lang()];
+  }
 
   /** GitHub link of a project, shown as an icon on its card. */
   githubOf(links: { url: string }[]) {

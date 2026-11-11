@@ -102,8 +102,8 @@
         <div class="skill-card">
           <h3>{{ group.name[lang()] }}</h3>
           <ul class="tags">
-            @for (item of group.items; track item) {
-              <li>{{ item }}</li>
+            @for (item of group.items; track $index) {
+              <li>{{ label(item) }}</li>
             }
           </ul>
         </div>
@@ -170,7 +170,10 @@
       <ul class="contact-list">
         <li>
           <app-icon name="mail" />
-          <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+          <span class="mail-line">
+            <a [href]="'mailto:' + profile.email">{{ profile.email }}</a>
+            <button type="button" class="copy" (click)="copyEmail()">{{ copied() ? i18n.t('copied') : i18n.t('copyEmail') }}</button>
+          </span>
         </li>
         <li>
           <app-icon name="linkedin" />
