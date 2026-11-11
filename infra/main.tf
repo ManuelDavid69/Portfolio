@@ -298,3 +298,29 @@ resource "azurerm_container_app" "web" {
     }
   }
 }
+
+# ------------------------------------------------------------ GitHub deploys
+
+# Identity used by the GitHub Actions deploy workflow. GitHub proves who it is with a short-lived
+# OpenID Connect token, so no password or secret key is stored on GitHub.
+resource "azurerm_user_assigned_identity" "github" {
+  name                = "id-${local.name}-github"
+  resource_group_name = azurerm_resource_group.main.name
+  location            = azurerm_resource_group.main.location
+  tags                = local.tags
+}
+
+resource "azurerm_federated_identity_credential" "github_main" {
+  name                      = "github-main"
+  user_assigned_identity_id = azurerm_user_assigned_identity.github.id
+  issuer                    = "https://token.actions.githubusercontent.com"
+  subject                   = "repo:${var.github_repo}:ref:refs/heads/main"
+  audience                  = ["api://AzureADTokenExchange"]
+}
+
+# Only this resource group, nothing else in the subscription.
+resource "azurerm_role_assignment" "github" {
+  scope                = azurerm_resource_group.main.id
+  role_definition_name = "Contributor"
+  principal_id         = azurerm_user_assigned_identity.github.principal_id
+}

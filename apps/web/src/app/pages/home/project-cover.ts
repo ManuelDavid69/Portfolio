@@ -27,23 +27,24 @@ import { Lang, ProjectCover as CoverId } from '../../content/types';
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
       width: 100%;
       height: 100%;
       background: var(--accent-soft);
       color: var(--accent);
     }
     .icon {
-      width: 4rem;
-      height: 4rem;
+      width: 42%;
+      height: 50%;
       fill: none;
       stroke: currentColor;
-      stroke-width: 1.5;
+      stroke-width: 1.25;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
     .name {
-      font-size: 1.4rem;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      letter-spacing: -0.01em;
       font-weight: 700;
       color: var(--heading);
     }

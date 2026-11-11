@@ -61,3 +61,9 @@ variable "smtp" {
     to       = string
   })
 }
+
+variable "github_repo" {
+  description = "Repository allowed to deploy, as owner/name."
+  type        = string
+  default     = "ManuelDavid69/Portfolio"
+}

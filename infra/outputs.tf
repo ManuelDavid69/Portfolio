@@ -17,3 +17,13 @@ output "database_url" {
   value       = local.db_url
   sensitive   = true
 }
+
+output "github_client_id" {
+  description = "AZURE_CLIENT_ID secret on GitHub."
+  value       = azurerm_user_assigned_identity.github.client_id
+}
+
+output "github_tenant_id" {
+  description = "AZURE_TENANT_ID secret on GitHub."
+  value       = azurerm_user_assigned_identity.github.tenant_id
+}
