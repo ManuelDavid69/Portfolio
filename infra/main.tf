@@ -65,10 +65,11 @@ resource "random_password" "db" {
 }
 
 # B1ms is the smallest size, and it is included in the Azure free account for 12 months.
+# PostgreSQL is restricted in Germany West Central for student subscriptions, so the database lives in Switzerland North.
 resource "azurerm_postgresql_flexible_server" "main" {
   name                          = "psql-${local.name}"
   resource_group_name           = azurerm_resource_group.main.name
-  location                      = azurerm_resource_group.main.location
+  location                      = var.db_location
   version                       = "17"
   sku_name                      = "B_Standard_B1ms"
   storage_mb                    = 32768
@@ -137,6 +138,7 @@ resource "azurerm_container_app_environment" "main" {
   name                       = "cae-${local.name}"
   resource_group_name        = azurerm_resource_group.main.name
   location                   = azurerm_resource_group.main.location
+  logs_destination           = "log-analytics"
   log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
   tags                       = local.tags
 }

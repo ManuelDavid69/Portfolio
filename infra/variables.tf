@@ -9,6 +9,12 @@ variable "location" {
   default     = "germanywestcentral"
 }
 
+variable "db_location" {
+  description = "Region of PostgreSQL. It is not available for my subscription in Germany West Central."
+  type        = string
+  default     = "switzerlandnorth"
+}
+
 variable "suffix" {
   description = "A few lowercase letters or digits to make global names unique (storage, function app)."
   type        = string
