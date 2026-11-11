@@ -5,7 +5,7 @@ type Theme = 'light' | 'dark';
 const KEY = 'theme';
 
 /**
- * Light or dark theme. The first choice comes from the system setting.
+ * Light or dark theme. The site opens in light, the visitor can switch to dark with the button.
  * A small script in index.html applies the saved choice before Angular starts, so the page does not flash.
  */
 @Injectable({ providedIn: 'root' })
@@ -30,6 +30,6 @@ export class ThemeService {
     if (!this.browser) return 'light';
     const set = this.document.documentElement.dataset['theme'];
     if (set === 'dark' || set === 'light') return set;
-    return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return 'light';
   }
 }
