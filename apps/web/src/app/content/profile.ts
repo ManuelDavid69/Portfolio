@@ -21,8 +21,8 @@ export const INTERNSHIP: L = {
 };
 
 export const INTRO: L = {
-  en: 'I am in my 4th year at CPE Lyon in computer science and networks. I do it as a work-study at AREA, part of the APRR motorway group. In the software department I work on the company’s business applications, from the interface down to the database.',
-  fr: 'Je suis en 4e année à CPE Lyon en informatique et réseaux. Je la fais en alternance chez AREA, une société du groupe autoroutier APRR. Au département logiciel je travaille sur les applications métier de l’entreprise, de l’interface jusqu’à la base de données.',
+  en: 'I am in my 4th year at CPE Lyon in computer science and networks. I do it as a work-study at AREA, part of the APRR motorway group. In the software department I work on the company’s business applications, used every day by the group’s teams.',
+  fr: 'Je suis en 4e année à CPE Lyon en informatique et réseaux. Je la fais en alternance chez AREA, une société du groupe autoroutier APRR. Au département logiciel je travaille sur les applications métier de l’entreprise, utilisées chaque jour par les équipes du groupe.',
 };
 
 export const ABOUT: L[] = [

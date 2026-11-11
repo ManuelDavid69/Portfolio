@@ -2,72 +2,64 @@ import { Component, input } from '@angular/core';
 import { Lang, ProjectCover as CoverId } from '../../content/types';
 
 /**
- * Drawn covers for the work projects that cannot show screenshots of the real app.
- * They summarise the project with its own facts, and follow the light and dark themes.
+ * Drawn covers for the work projects that cannot show screenshots of the real apps.
+ * Each one is a simplified window of the app built from its real features, with made-up data.
+ * They follow the light and dark themes.
  */
 @Component({
   selector: 'app-project-cover',
   template: `
     @switch (id()) {
       @case ('gmao') {
-        <svg viewBox="0 0 640 360" role="img" [attr.aria-label]="fr() ? 'Flux entre l’outil RH, la GMAO et la finance' : 'Flow between HR, the GMAO and finance'">
-          <defs>
-            <marker id="arrow-gmao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0 0 10 5 0 10z" class="fill-accent" />
-            </marker>
-          </defs>
+        <svg viewBox="0 0 640 360" role="img" [attr.aria-label]="fr() ? 'Fenêtre simplifiée de la GMAO avec des matériels mis à jour' : 'Simplified GMAO window with updated machines'">
+          <rect x="40" y="28" width="560" height="304" rx="14" class="window" />
+          <path d="M40 42a14 14 0 0 1 14-14h532a14 14 0 0 1 14 14v26H40z" class="titlebar" />
+          <circle cx="64" cy="48" r="6" class="dot" /><circle cx="84" cy="48" r="6" class="dot" /><circle cx="104" cy="48" r="6" class="dot" />
+          <text x="320" y="55" class="title">{{ fr() ? 'GMAO PARC · Matériels' : 'GMAO PARC · Equipment' }}</text>
 
-          <!-- HR -->
-          <rect x="40" y="130" width="140" height="100" rx="14" class="box" />
-          <g transform="translate(92 150)" class="stroke-muted">
-            <circle cx="10" cy="8" r="7" /><path d="M-4 34c0-9 6-14 14-14s14 5 14 14" />
-            <circle cx="30" cy="10" r="5" /><path d="M26 22c8 0 12 4 12 12" />
-          </g>
-          <text x="110" y="212" class="label">{{ fr() ? 'Outil RH' : 'HR tool' }}</text>
+          <text x="72" y="108" class="th">{{ fr() ? 'Matériel' : 'Machine' }}</text>
+          <text x="262" y="108" class="th">Site</text>
+          <text x="420" y="108" class="th">{{ fr() ? 'Code analytique' : 'Cost centre' }}</text>
+          <line x1="64" y1="122" x2="576" y2="122" class="rule" />
 
-          <!-- GMAO -->
-          <rect x="250" y="110" width="140" height="140" rx="14" class="box main" />
-          <g transform="translate(286 140)" class="stroke-accent">
-            <rect x="0" y="12" width="44" height="30" rx="3" /><path d="M44 22h14l10 12v8H44" />
-            <circle cx="12" cy="46" r="6" class="fill-card" /><circle cx="54" cy="46" r="6" class="fill-card" />
-          </g>
-          <text x="320" y="222" class="label strong">GMAO</text>
+          @for (row of gmaoRows; track row.machine; let i = $index) {
+            <text [attr.x]="72" [attr.y]="160 + i * 46" class="td strong">{{ row.machine }}</text>
+            <text [attr.x]="262" [attr.y]="160 + i * 46" class="td">{{ row.site }}</text>
+            <text [attr.x]="420" [attr.y]="160 + i * 46" class="td">{{ row.code }}</text>
+            <circle [attr.cx]="548" [attr.cy]="153 + i * 46" r="13" class="ok" />
+            <path [attr.d]="'M541 ' + (153 + i * 46) + 'l5 5 9-10'" class="tick" />
+          }
 
-          <!-- Finance -->
-          <rect x="460" y="130" width="140" height="100" rx="14" class="box" />
-          <text x="530" y="182" class="euro">€</text>
-          <text x="530" y="212" class="label">Finance</text>
-
-          <!-- Jobs -->
-          <path d="M186 180h58" class="link" marker-end="url(#arrow-gmao)" />
-          <path d="M396 180h58" class="link" marker-start="url(#arrow-gmao)" marker-end="url(#arrow-gmao)" />
-          <rect x="166" y="76" width="98" height="28" rx="14" class="chip" />
-          <text x="215" y="95" class="chip-text">API REST</text>
-          <rect x="376" y="76" width="98" height="28" rx="14" class="chip" />
-          <text x="425" y="95" class="chip-text">JDBC</text>
-          <text x="320" y="300" class="caption">{{ fr() ? 'Deux traitements qui tournent seuls' : 'Two jobs that run on their own' }}</text>
+          <rect x="300" y="282" width="276" height="36" rx="18" class="toast" />
+          <text x="438" y="306" class="toast-text">{{ fr() ? 'Mail de compte rendu envoyé' : 'Report e-mail sent' }}</text>
         </svg>
       }
       @case ('casa') {
-        <svg viewBox="0 0 640 360" role="img" [attr.aria-label]="fr() ? 'Purge RGPD : 1 250 ms avant l’index, 2,5 ms après' : 'GDPR purge: 1,250 ms before the index, 2.5 ms after'">
-          <!-- House -->
-          <g transform="translate(60 60)" class="stroke-accent">
-            <path d="M0 26 26 4l26 22" /><path d="M8 20v28h36V20" /><path d="M21 48V34h10v14" />
-          </g>
-          <text x="130" y="84" class="title">{{ fr() ? 'Purge RGPD' : 'GDPR purge' }}</text>
-          <text x="130" y="108" class="sub">EXPLAIN ANALYZE</text>
+        <svg viewBox="0 0 640 360" role="img" [attr.aria-label]="fr() ? 'Fenêtre simplifiée de CASA avec filtres et export Excel' : 'Simplified CASA window with filters and Excel export'">
+          <rect x="40" y="28" width="560" height="304" rx="14" class="window" />
+          <path d="M40 42a14 14 0 0 1 14-14h532a14 14 0 0 1 14 14v26H40z" class="titlebar" />
+          <circle cx="64" cy="48" r="6" class="dot" /><circle cx="84" cy="48" r="6" class="dot" /><circle cx="104" cy="48" r="6" class="dot" />
+          <text x="320" y="55" class="title">{{ fr() ? 'CASA · Logements' : 'CASA · Housing' }}</text>
 
-          <!-- Before -->
-          <text x="60" y="170" class="bar-label">{{ fr() ? 'Avant l’index' : 'Before the index' }}</text>
-          <rect x="60" y="182" width="520" height="22" rx="6" class="track" />
-          <rect x="60" y="182" width="520" height="22" rx="6" class="bar-before" />
-          <text x="580" y="170" class="value">{{ fr() ? '1 250 ms' : '1,250 ms' }}</text>
+          <rect x="64" y="86" width="160" height="38" rx="8" class="select" />
+          <text x="80" y="111" class="td">{{ fr() ? 'Région' : 'Region' }}</text>
+          <path d="M202 101l6 6 6-6" class="chevron" />
+          <path d="M232 105h16" class="link" />
+          <rect x="256" y="86" width="160" height="38" rx="8" class="select" />
+          <text x="272" y="111" class="td">District</text>
+          <path d="M394 101l6 6 6-6" class="chevron" />
+          <rect x="440" y="86" width="136" height="38" rx="8" class="button" />
+          <text x="508" y="111" class="button-text">Export Excel</text>
 
-          <!-- After -->
-          <text x="60" y="250" class="bar-label">{{ fr() ? 'Après l’index' : 'After the index' }}</text>
-          <rect x="60" y="262" width="520" height="22" rx="6" class="track" />
-          <rect x="60" y="262" width="6" height="22" rx="3" class="bar-after" />
-          <text x="580" y="250" class="value accent">{{ fr() ? '2,5 ms' : '2.5 ms' }}</text>
+          @for (row of casaRows(); track row.label; let i = $index) {
+            <line x1="64" [attr.y1]="146 + i * 50" x2="576" [attr.y2]="146 + i * 50" class="rule" />
+            <text x="72" [attr.y]="180 + i * 50" class="td strong">{{ row.label }}</text>
+            <text x="300" [attr.y]="180 + i * 50" class="td">{{ row.status }}</text>
+            @if (row.alert) {
+              <path [attr.d]="'M548 ' + (160 + i * 50) + 'l16 28h-32z'" class="alert" />
+              <text x="548" [attr.y]="183 + i * 50" class="alert-mark">!</text>
+            }
+          }
         </svg>
       }
     }
@@ -77,7 +69,7 @@ import { Lang, ProjectCover as CoverId } from '../../content/types';
       display: block;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, var(--accent-soft), var(--bg-alt));
+      background: var(--accent-soft);
     }
     svg {
       display: block;
@@ -85,105 +77,89 @@ import { Lang, ProjectCover as CoverId } from '../../content/types';
       height: 100%;
       font-family: var(--font);
     }
-    .box {
+    .window {
       fill: var(--card);
       stroke: var(--border);
       stroke-width: 2;
     }
-    .box.main {
-      stroke: var(--accent);
-      stroke-width: 3;
+    .titlebar {
+      fill: var(--bg-alt);
     }
-    .stroke-muted,
-    .stroke-accent {
+    .dot {
+      fill: var(--border);
+    }
+    .title {
+      font-size: 19px;
+      font-weight: 600;
+      fill: var(--muted);
+      text-anchor: middle;
+    }
+    .th {
+      font-size: 18px;
+      font-weight: 600;
+      fill: var(--muted);
+    }
+    .td {
+      font-size: 21px;
+      fill: var(--text);
+    }
+    .td.strong {
+      font-weight: 600;
+      fill: var(--heading);
+    }
+    .rule {
+      stroke: var(--border);
+      stroke-width: 2;
+    }
+    .ok {
+      fill: var(--success);
+    }
+    .tick {
       fill: none;
+      stroke: #fff;
       stroke-width: 3;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
-    .stroke-muted {
-      stroke: var(--muted);
-    }
-    .stroke-accent {
-      stroke: var(--accent);
-    }
-    .fill-card {
-      fill: var(--card);
-    }
-    .fill-accent {
+    .toast {
       fill: var(--accent);
     }
-    .link {
-      stroke: var(--accent);
-      stroke-width: 3;
-      fill: none;
-    }
-    .label,
-    .chip-text,
-    .caption,
-    .euro {
-      text-anchor: middle;
-    }
-    .label {
+    .toast-text {
       font-size: 17px;
       font-weight: 600;
-      fill: var(--heading);
+      fill: var(--on-accent);
+      text-anchor: middle;
     }
-    .label.strong {
-      font-size: 20px;
-      font-weight: 800;
+    .select {
+      fill: var(--bg);
+      stroke: var(--border);
+      stroke-width: 2;
     }
-    .euro {
-      font-size: 40px;
-      font-weight: 700;
-      fill: var(--muted);
+    .chevron,
+    .link {
+      fill: none;
+      stroke: var(--muted);
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
-    .chip {
+    .button {
       fill: var(--accent);
     }
-    .chip-text {
-      font-size: 13px;
+    .button-text {
+      font-size: 18px;
       font-weight: 600;
       fill: var(--on-accent);
+      text-anchor: middle;
     }
-    .caption {
-      font-size: 15px;
-      fill: var(--muted);
+    .alert {
+      fill: #f59e0b;
     }
-    .title {
-      font-size: 26px;
+    .alert-mark {
+      font-size: 18px;
       font-weight: 800;
-      fill: var(--heading);
-    }
-    .sub {
-      font-size: 15px;
-      fill: var(--muted);
-      letter-spacing: 0.04em;
-    }
-    .bar-label {
-      font-size: 16px;
-      font-weight: 600;
-      fill: var(--text);
-    }
-    .value {
-      font-size: 16px;
-      font-weight: 700;
-      fill: var(--muted);
-      text-anchor: end;
-    }
-    .value.accent {
-      fill: var(--accent);
-    }
-    .track {
-      fill: var(--card);
-      stroke: var(--border);
-    }
-    .bar-before {
-      fill: var(--muted);
-      opacity: 0.55;
-    }
-    .bar-after {
-      fill: var(--accent);
+      fill: #fff;
+      text-anchor: middle;
     }
   `,
 })
@@ -191,4 +167,24 @@ export class ProjectCover {
   readonly id = input.required<CoverId>();
   readonly lang = input.required<Lang>();
   fr = () => this.lang() === 'fr';
+
+  /** Made-up machines, the real ones stay private. */
+  readonly gmaoRows = [
+    { machine: 'TR-0412', site: 'Grenoble', code: '4310' },
+    { machine: 'SA-1187', site: 'Chambéry', code: '4320' },
+    { machine: 'TO-0935', site: 'Lyon', code: '4350' },
+  ];
+
+  casaRows = () =>
+    this.fr()
+      ? [
+          { label: 'Logement 12', status: 'Occupé', alert: false },
+          { label: 'Logement 27', status: 'Occupé', alert: true },
+          { label: 'Logement 31', status: 'Libre', alert: false },
+        ]
+      : [
+          { label: 'Home 12', status: 'Occupied', alert: false },
+          { label: 'Home 27', status: 'Occupied', alert: true },
+          { label: 'Home 31', status: 'Vacant', alert: false },
+        ];
 }
