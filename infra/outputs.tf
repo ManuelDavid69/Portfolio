@@ -27,3 +27,13 @@ output "github_tenant_id" {
   description = "AZURE_TENANT_ID secret on GitHub."
   value       = azurerm_user_assigned_identity.github.tenant_id
 }
+
+output "environment_ip" {
+  description = "A record of davidmanuel.fr at OVH."
+  value       = azapi_resource.environment.output.properties.staticIp
+}
+
+output "domain_verification_id" {
+  description = "TXT records asuid, asuid.www and asuid.api at OVH."
+  value       = azapi_resource.environment.output.properties.customDomainConfiguration.customDomainVerificationId
+}

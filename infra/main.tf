@@ -18,11 +18,19 @@ terraform {
       source  = "hashicorp/random"
       version = "~> 3.7"
     }
+    azapi = {
+      source  = "Azure/azapi"
+      version = "~> 2.13"
+    }
   }
 }
 
 provider "azurerm" {
   features {}
+  subscription_id = var.subscription_id
+}
+
+provider "azapi" {
   subscription_id = var.subscription_id
 }
 
@@ -134,25 +142,42 @@ resource "azurerm_storage_container" "functions" {
 
 # ----------------------------------------------------------------------- API
 
-resource "azurerm_container_app_environment" "main" {
-  name                       = "cae-${local.name}"
-  resource_group_name        = azurerm_resource_group.main.name
-  location                   = azurerm_resource_group.main.location
-  logs_destination           = "log-analytics"
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.main.id
-  tags                       = local.tags
+# On my subscription Azure now creates new environments in "Express" mode, which has no custom domains.
+# The azurerm provider cannot choose the mode, so the environment is created with azapi
+# and asks for the classic "WorkloadProfiles" mode explicitly.
+resource "azapi_resource" "environment" {
+  type      = "Microsoft.App/managedEnvironments@2026-03-02-preview"
+  name      = "cae-${local.name}-v2"
+  parent_id = azurerm_resource_group.main.id
+  location  = azurerm_resource_group.main.location
+  tags      = local.tags
 
-  # Azure adds this pay-per-use profile anyway. Declaring it avoids a useless change at each apply.
-  workload_profile {
-    name                  = "Consumption"
-    workload_profile_type = "Consumption"
+  body = {
+    properties = {
+      environmentMode = "WorkloadProfiles"
+      workloadProfiles = [
+        { name = "Consumption", workloadProfileType = "Consumption" }
+      ]
+      appLogsConfiguration = {
+        destination = "log-analytics"
+        logAnalyticsConfiguration = {
+          customerId = azurerm_log_analytics_workspace.main.workspace_id
+          sharedKey  = azurerm_log_analytics_workspace.main.primary_shared_key
+        }
+      }
+    }
   }
+
+  # azapi does not know this preview API version yet, Azure accepts it (tested with az rest).
+  schema_validation_enabled = false
+
+  response_export_values = ["properties.staticIp", "properties.customDomainConfiguration.customDomainVerificationId"]
 }
 
 resource "azurerm_container_app" "api" {
   name                         = "ca-${local.name}-api"
   resource_group_name          = azurerm_resource_group.main.name
-  container_app_environment_id = azurerm_container_app_environment.main.id
+  container_app_environment_id = azapi_resource.environment.id
   revision_mode                = "Single"
   workload_profile_name        = "Consumption"
   tags                         = local.tags
@@ -276,7 +301,7 @@ resource "azurerm_function_app_flex_consumption" "main" {
 resource "azurerm_container_app" "web" {
   name                         = "ca-${local.name}-web"
   resource_group_name          = azurerm_resource_group.main.name
-  container_app_environment_id = azurerm_container_app_environment.main.id
+  container_app_environment_id = azapi_resource.environment.id
   revision_mode                = "Single"
   workload_profile_name        = "Consumption"
   tags                         = local.tags
