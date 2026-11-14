@@ -44,6 +44,14 @@ const iotGrafana = img('/images/iot/grafana.webp', 1600, 362, {
   fr: 'De vraies mesures enregistrées par notre capteur pendant une séance de test et affichées dans Grafana.',
 });
 
+const forensicXss = img('/images/forensic/xss.webp', 1600, 547, {
+  en: 'HackBNB room page with a red banner showing that an injected script ran',
+  fr: 'Page d’un logement HackBNB avec une bannière rouge qui montre qu’un script injecté s’est exécuté',
+}, {
+  en: 'D7: a script hidden in a room description runs in the visitor’s browser (red banner at the top).',
+  fr: 'D7 : un script caché dans la description d’un logement s’exécute dans le navigateur du visiteur (bannière rouge en haut).',
+});
+
 export const PROJECTS: Project[] = [
   // ---------------------------------------------------------------- work
   {
@@ -466,6 +474,108 @@ export const PROJECTS: Project[] = [
 
   // -------------------------------------------------------------- school
   {
+    slug: 'forensic',
+    group: 'school',
+    title: 'Forensic investigation',
+    year: '2026',
+    tagline: {
+      en: 'A web forensic investigation: prove a hack, rebuild the attack and fix the vulnerabilities.',
+      fr: 'Une investigation forensic web : prouver un piratage, reconstituer l’attaque et corriger les failles.',
+    },
+    context: { en: 'CPE Lyon, web and code security', fr: 'CPE Lyon, sécurité du code et du web' },
+    period: { en: 'November 2026', fr: 'Novembre 2026' },
+    role: { en: 'Vulnerabilities D3, D4, D7 and D8', fr: 'Failles D3, D4, D7 et D8' },
+    team: { en: 'Team of 4', fr: 'Équipe de 4' },
+    stack: ['Grafana', 'Loki', 'Burp Suite', 'Flask', 'React', 'Docker'],
+    links: [{ label: { en: 'Fixed code', fr: 'Code corrigé' }, url: 'https://github.com/Tsuwii/project-hackbnb-sources' }],
+    thumbnail: forensicXss,
+    sections: [
+      {
+        title: { en: 'The scenario', fr: 'Le scénario' },
+        paragraphs: [
+          {
+            en: 'HackBNB is a fictional booking platform. It received an anonymous e-mail claiming that its site had been hacked, then its customer data showed up on a darkweb forum. As a CERT team we had to prove the attack, rebuild what happened, find the stolen data and fix the code before the site went back online.',
+            fr: 'HackBNB est une plateforme de réservation fictive. Elle a reçu un mail anonyme qui disait que son site avait été piraté, puis des données de ses clients sont apparues sur un forum du darkweb. En tant qu’équipe CERT nous devions prouver l’attaque, reconstituer ce qui s’était passé, trouver les données volées et corriger le code avant la remise en ligne du site.',
+          },
+        ],
+        figures: [
+          {
+            kind: 'picture',
+            picture: img('/images/forensic/darkweb.webp', 1600, 730, {
+              en: 'Darkweb forum post selling the HackBNB customer data',
+              fr: 'Annonce sur un forum du darkweb qui vend les données des clients de HackBNB',
+            }, {
+              en: 'The starting point: the attacker sells the data on a darkweb forum. The example line matches the data we extracted ourselves, which proved the attack.',
+              fr: 'Le point de départ : l’attaquant vend les données sur un forum du darkweb. La ligne d’exemple correspond aux données que nous avons nous-mêmes extraites, ce qui a prouvé l’attaque.',
+            }),
+          },
+        ],
+      },
+      {
+        title: { en: 'The investigation', fr: 'L’enquête' },
+        paragraphs: [
+          {
+            en: 'We loaded the Apache logs of the day of the attack into Loki and read them in Grafana. One IP address stood out with almost 7,000 requests. We followed it step by step: a directory scan, an SQL injection, a booking confirmed without paying, then hundreds of requests to steal customer data from Stripe.',
+            fr: 'Nous avons chargé les logs Apache du jour de l’attaque dans Loki et nous les avons analysés dans Grafana. Une adresse IP ressortait avec presque 7 000 requêtes. Nous l’avons suivie étape par étape : un scan des répertoires, une injection SQL, une réservation confirmée sans payer, puis des centaines de requêtes pour voler les données des clients chez Stripe.',
+          },
+          {
+            en: 'At the end we had the full timeline, the profile of the attacker and the list of stolen data. We presented it all to the client in a 25-minute defense.',
+            fr: 'À la fin nous avions la chronologie complète, le profil de l’attaquant et la liste des données volées. Nous avons tout présenté au client lors d’une soutenance de 25 minutes.',
+          },
+        ],
+      },
+      {
+        title: { en: 'My part: four vulnerabilities', fr: 'Ma partie : quatre failles' },
+        paragraphs: [
+          {
+            en: 'A penetration test report listed 8 vulnerabilities. I took 4 of them. For each one I found it in the code, exploited it on the pre-production site, fixed it and checked that the attack no longer worked.',
+            fr: 'Un rapport de test d’intrusion listait 8 failles. J’en ai pris 4. Pour chacune je l’ai trouvée dans le code, je l’ai exploitée sur la préproduction, je l’ai corrigée et j’ai vérifié que l’attaque ne marchait plus.',
+          },
+        ],
+        bullets: [
+          {
+            en: 'D4, predictable secret: the code that confirms a payment was just a hash of the booking time. I computed it and confirmed a booking without paying. Fix: a random secret and a check of the payment with Stripe.',
+            fr: 'D4, secret prévisible : le code qui confirme un paiement était seulement un hash de l’heure de la réservation. Je l’ai calculé et j’ai confirmé une réservation sans payer. Correction : un secret aléatoire et une vérification du paiement auprès de Stripe.',
+          },
+          {
+            en: 'D3, SSRF: a booking parameter was pasted into a Stripe address. With ../ I could reach other Stripe pages with the server key and read customers and their cards. Fix: the ID now comes from the database and goes through the official Stripe SDK.',
+            fr: 'D3, SSRF : un paramètre de la réservation était collé dans une adresse Stripe. Avec des ../ je pouvais atteindre d’autres pages de Stripe avec la clé du serveur et lire les clients et leurs cartes. Correction : l’identifiant vient maintenant de la base et passe par le SDK officiel de Stripe.',
+          },
+          {
+            en: 'D7, stored XSS: room descriptions were shown as raw HTML, so a script hidden inside ran for every visitor. Fix: DOMPurify on the front end and a Content-Security-Policy.',
+            fr: 'D7, XSS stockée : les descriptions des logements étaient affichées en HTML brut, donc un script caché dedans s’exécutait chez chaque visiteur. Correction : DOMPurify côté front et une Content-Security-Policy.',
+          },
+          {
+            en: 'D8, information leak: the headers gave the exact versions of Apache and Python, and Flask ran in debug mode with SQL errors on screen. Fix: hidden versions, debug off and generic error pages.',
+            fr: 'D8, fuite d’informations : les en-têtes donnaient les versions exactes d’Apache et de Python, et Flask tournait en mode debug avec les erreurs SQL à l’écran. Correction : versions masquées, debug désactivé et pages d’erreur génériques.',
+          },
+        ],
+        figures: [
+          {
+            kind: 'picture',
+            picture: img('/images/forensic/paiement.webp', 1350, 596, {
+              en: 'Booking marked as paid although no payment was made',
+              fr: 'Réservation marquée comme payée alors qu’aucun paiement n’a été fait',
+            }, {
+              en: 'D4: the booking shows “Payment done” although nothing was paid.',
+              fr: 'D4 : la réservation affiche « Paiement effectué » alors que rien n’a été payé.',
+            }),
+          },
+          { kind: 'picture', picture: forensicXss },
+        ],
+      },
+      {
+        title: { en: 'Result', fr: 'Résultat' },
+        paragraphs: [
+          {
+            en: 'Each fix went into its own pull request on the team repository. This project taught me to read an application like an attacker, and to fix it without breaking how it works for normal users.',
+            fr: 'Chaque correction a fait l’objet de sa propre pull request sur le dépôt de l’équipe. Ce projet m’a appris à lire une application comme un attaquant, et à la corriger sans casser son fonctionnement pour les utilisateurs normaux.',
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: 'iot',
     group: 'school',
     title: 'IoT mini-architecture',
@@ -525,61 +635,6 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    slug: 'lpkf',
-    group: 'school',
-    title: 'LPKF file submission',
-    year: '2025',
-    tagline: {
-      en: 'A Flask web app where students submit their circuit boards for the school’s engraving machine.',
-      fr: 'Une application Flask où les étudiants déposent leurs cartes électroniques pour la graveuse de l’IUT.',
-    },
-    context: { en: 'IUT Lyon 1, BUT GEII', fr: 'IUT Lyon 1, BUT GEII' },
-    period: { en: 'February – May 2025', fr: 'Février – mai 2025' },
-    role: { en: 'Team project', fr: 'Projet d’équipe' },
-    team: { en: 'Team of 5', fr: 'Équipe de 5' },
-    stack: ['Python', 'Flask', 'SQLAlchemy', 'MySQL', 'Jinja2'],
-    links: [{ label: { en: 'Demo video', fr: 'Vidéo de démo' }, url: 'https://youtu.be/qo4dVAajl7M' }],
-    thumbnail: lpkfMembers,
-    sections: [
-      {
-        title: { en: 'The project', fr: 'Le projet' },
-        paragraphs: [
-          {
-            en: 'At the IUT students design circuit boards with KiCad. They are then engraved on an LPKF machine. We built a web platform to submit these files and follow their validation.',
-            fr: 'À l’IUT les étudiants conçoivent des cartes électroniques avec KiCad. Elles sont ensuite gravées sur une machine LPKF. Nous avons fait une plateforme web pour déposer ces fichiers et suivre leur validation.',
-          },
-        ],
-        bullets: [
-          {
-            en: 'Students upload their project as a ZIP file and follow its status.',
-            fr: 'Les étudiants déposent leur projet en ZIP et suivent son statut.',
-          },
-          {
-            en: 'Teachers run automatic checks on the KiCad files and then accept or reject the project.',
-            fr: 'Les professeurs lancent des vérifications automatiques des fichiers KiCad puis acceptent ou refusent le projet.',
-          },
-          {
-            en: 'An admin manages users and roles. Login is handled with Flask-Login.',
-            fr: 'Un administrateur gère les utilisateurs et les rôles. La connexion est gérée avec Flask-Login.',
-          },
-        ],
-        figures: [
-          {
-            kind: 'picture',
-            picture: img('/images/lpkf/depot.webp', 1440, 520, {
-              en: 'Page to submit a project as a ZIP file',
-              fr: 'Page de dépôt d’un projet en fichier ZIP',
-            }),
-          },
-          {
-            kind: 'picture',
-            picture: lpkfMembers,
-          },
-        ],
-      },
-    ],
-  },
-  {
     slug: 'ade-database',
     group: 'school',
     title: 'ADE database interface',
@@ -629,6 +684,61 @@ export const PROJECTS: Project[] = [
               en: 'The supervision page. I ran the app again with demo data and made-up teacher names.',
               fr: 'La page de supervision. J’ai relancé l’application avec des données de démo et des noms d’enseignants inventés.',
             }),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'lpkf',
+    group: 'school',
+    title: 'LPKF file submission',
+    year: '2025',
+    tagline: {
+      en: 'A Flask web app where students submit their circuit boards for the school’s engraving machine.',
+      fr: 'Une application Flask où les étudiants déposent leurs cartes électroniques pour la graveuse de l’IUT.',
+    },
+    context: { en: 'IUT Lyon 1, BUT GEII', fr: 'IUT Lyon 1, BUT GEII' },
+    period: { en: 'February – May 2025', fr: 'Février – mai 2025' },
+    role: { en: 'Team project', fr: 'Projet d’équipe' },
+    team: { en: 'Team of 5', fr: 'Équipe de 5' },
+    stack: ['Python', 'Flask', 'SQLAlchemy', 'MySQL', 'Jinja2'],
+    links: [{ label: { en: 'Demo video', fr: 'Vidéo de démo' }, url: 'https://youtu.be/qo4dVAajl7M' }],
+    thumbnail: lpkfMembers,
+    sections: [
+      {
+        title: { en: 'The project', fr: 'Le projet' },
+        paragraphs: [
+          {
+            en: 'At the IUT students design circuit boards with KiCad. They are then engraved on an LPKF machine. We built a web platform to submit these files and follow their validation.',
+            fr: 'À l’IUT les étudiants conçoivent des cartes électroniques avec KiCad. Elles sont ensuite gravées sur une machine LPKF. Nous avons fait une plateforme web pour déposer ces fichiers et suivre leur validation.',
+          },
+        ],
+        bullets: [
+          {
+            en: 'Students upload their project as a ZIP file and follow its status.',
+            fr: 'Les étudiants déposent leur projet en ZIP et suivent son statut.',
+          },
+          {
+            en: 'Teachers run automatic checks on the KiCad files and then accept or reject the project.',
+            fr: 'Les professeurs lancent des vérifications automatiques des fichiers KiCad puis acceptent ou refusent le projet.',
+          },
+          {
+            en: 'An admin manages users and roles. Login is handled with Flask-Login.',
+            fr: 'Un administrateur gère les utilisateurs et les rôles. La connexion est gérée avec Flask-Login.',
+          },
+        ],
+        figures: [
+          {
+            kind: 'picture',
+            picture: img('/images/lpkf/depot.webp', 1440, 520, {
+              en: 'Page to submit a project as a ZIP file',
+              fr: 'Page de dépôt d’un projet en fichier ZIP',
+            }),
+          },
+          {
+            kind: 'picture',
+            picture: lpkfMembers,
           },
         ],
       },
