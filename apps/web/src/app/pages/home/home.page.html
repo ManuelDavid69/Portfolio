@@ -10,7 +10,7 @@
       <div class="actions">
         <a class="btn btn-primary" [routerLink]="[]" fragment="projects">{{ i18n.t('seeProjects') }}</a>
         @if (cvUrl()) {
-          <a class="btn btn-outline" [href]="cvUrl()" download><app-icon name="download" />{{ i18n.t('downloadCv') }}</a>
+          <a class="btn btn-outline" [href]="cvUrl()" target="_blank" rel="noopener"><app-icon name="external" />{{ i18n.t('downloadCv') }}</a>
         } @else {
           <span class="btn btn-outline" aria-disabled="true"><app-icon name="download" />{{ i18n.t('cvSoon') }}</span>
         }
