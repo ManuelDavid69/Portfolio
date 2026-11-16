@@ -6,8 +6,8 @@ export const PROFILE = {
   email: 'manu.david0704@gmail.com',
   linkedin: 'https://www.linkedin.com/in/manuel-david-9585a526a/',
   github: 'https://github.com/ManuelDavid69',
-  /** Path of the PDF once the new CV is ready, e.g. '/cv/manuel-david-cv-en.pdf'. */
-  cv: { en: '', fr: '' } as L,
+  /** General CV: French with photo on the French site, English without photo on the English site. */
+  cv: { en: '/cv/CV_Manuel_DAVID_EN.pdf', fr: '/cv/CV_Manuel_DAVID_FR.pdf' } as L,
 };
 
 export const ROLE: L = {
