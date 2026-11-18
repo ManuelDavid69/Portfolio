@@ -22,6 +22,15 @@ export class SeoService {
     this.meta.updateTag({ property: 'og:url', content: SITE + path });
     this.meta.updateTag({ property: 'og:locale', content: page.lang === 'fr' ? 'fr_FR' : 'en_GB' });
 
+    // Preview image shown when a link to the site is shared (LinkedIn, messaging apps...).
+    this.meta.updateTag({ property: 'og:image', content: `${SITE}/og/og-${page.lang}.png` });
+    this.meta.updateTag({ property: 'og:image:width', content: '1200' });
+    this.meta.updateTag({ property: 'og:image:height', content: '630' });
+    this.meta.updateTag({ property: 'og:image:alt', content: page.lang === 'fr'
+      ? 'Manuel David, apprenti ingénieur en informatique, recherche un stage à l’étranger'
+      : 'Manuel David, computer engineering apprentice, looking for an internship abroad' });
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+
     this.setLink('canonical', SITE + path);
     this.setLink('alternate', SITE + page.enPath, 'en');
     this.setLink('alternate', SITE + page.frPath, 'fr');
